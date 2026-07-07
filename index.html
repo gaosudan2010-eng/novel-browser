@@ -194,7 +194,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 </div>
 
 <script>
-const DS_CONFIG = { hannuota:{file:'_nd.json',name:'汉诺塔抽样'}, yangjie:{file:'_nd_100.json',name:'杨姐抽样'} };
+const DS_CONFIG = { hannuota:{file:'nd.json',name:'汉诺塔抽样'}, yangjie:{file:'nd_100.json',name:'杨姐抽样'} };
 let ALL_DATA={}, DATA={}, currentTab='hannuota', currentUser=null, activeFilter=null;
 let SCENARIO={};
 let ANALYSIS={};
@@ -204,8 +204,8 @@ const REAL_NOVEL_UIDS=new Set(["aYSYehRsry4DAN+OeKlAhivB","aiwBwXB4wS0DAHwjAq/rP
 
 Promise.all([
   Promise.all(Object.entries(DS_CONFIG).map(([k,c])=>fetch(c.file).then(r=>r.json()).then(d=>{ALL_DATA[k]=d}))),
-  fetch('_scenario.json').then(r=>r.json()).then(d=>{SCENARIO=d}).catch(()=>{}),
-  fetch('_analysis.json').then(r=>r.json()).then(d=>{ANALYSIS=d}).catch(()=>{})
+  fetch('scenario.json').then(r=>r.json()).then(d=>{SCENARIO=d}).catch(()=>{}),
+  fetch('analysis.json').then(r=>r.json()).then(d=>{ANALYSIS=d}).catch(()=>{})
 ]).then(()=>{
   for(const[k,d]of Object.entries(ALL_DATA)){
     const u=Object.keys(d), t=u.reduce((s,x)=>s+d[x].length,0);
