@@ -164,6 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 <div class="header">
   <h1>📚 千问小说创作对话浏览器</h1>
   <button onclick="exportAllNotes()" style="padding:4px 12px;font-size:12px;cursor:pointer;border:1px solid #4a4af0;background:#fff;color:#4a4af0;border-radius:4px">📥 导出所有备注</button>
+  <button onclick="importNotes()" style="padding:4px 12px;font-size:12px;cursor:pointer;border:1px solid #2e7d32;background:#fff;color:#2e7d32;border-radius:4px">📤 导入备注</button>
   <span class="stats" id="globalStats"></span>
   <div class="search-box" id="searchBox">
     <input type="text" id="searchInput" placeholder="搜索query内容..." oninput="filterUsers()">
@@ -348,10 +349,41 @@ function deleteNote(uid){
 }
 function exportAllNotes(){
   const store=getNotesStore();
-  const data=Object.keys(DATA);
-  const out=data.map((uid,i)=>{const k='hannuota_'+uid;const n=store[k];return{idx:i+1,utdid:uid,note:n?n.text:'',updated:n?n.updated:''}});
+  const allKeys=Object.keys(store);
+  if(allKeys.length===0){alert('当前没有备注数据');return}
+  const out=allKeys.map(k=>({key:k,text:store[k].text||'',updated:store[k].updated||'',history:store[k].history||[]}));
   const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='_notes_export.json';a.click();
+}
+function importNotes(){
+  const inp=document.createElement('input');inp.type='file';inp.accept='.json';
+  inp.onchange=function(e){
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=function(ev){
+      try{
+        const data=JSON.parse(ev.target.result);
+        if(!Array.isArray(data)){alert('格式错误：不是数组');return}
+        const store=getNotesStore();
+        let count=0;
+        data.forEach(item=>{
+          if(item.key&&item.text){
+            store[item.key]={text:item.text,updated:item.updated||new Date().toLocaleString(),history:item.history||[]};
+            count++;
+          } else if(item.utdid&&item.note){
+            const k='hannuota_'+item.utdid;
+            store[k]={text:item.note,updated:item.updated||new Date().toLocaleString(),history:[]};
+            count++;
+          }
+        });
+        saveNotesStore(store);
+        alert('成功导入 '+count+' 条备注！');
+        if(currentUser)selectUser(currentUser);
+      }catch(err){alert('导入失败：'+err.message)}
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
 }
 function renderNotesPanel(uid){
   const note=getNote(uid);
