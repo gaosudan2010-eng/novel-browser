@@ -208,6 +208,42 @@ const PRESET_NOTES={"hannuota_ajN9DP4SrvcDAKYnFTD8Hixv":{"text":"儿童陪聊，
 /* 自动注入预置备注到localStorage */
 (function(){try{const k='novel_browser_notes';const s=JSON.parse(localStorage.getItem(k)||'{}');let n=0;for(const[key,val]of Object.entries(PRESET_NOTES)){if(!s[key]){s[key]={text:val.text,updated:val.updated,history:[]};n++}}if(n>0)localStorage.setItem(k,JSON.stringify(s))}catch(e){}})();
 
+function navigateFromHash(){
+  if(_skipHashChange)return;
+  const h=location.hash.replace(/^#/,'');
+  if(!h){switchTab('hannuota');return}
+  const params=new URLSearchParams(h);
+  const tab=params.get('tab')||'hannuota';
+  const userIdx=parseInt(params.get('user'))||0;
+  // 确保tab已切换
+  if(currentTab!==tab){
+    const validTabs=Object.keys(DS_CONFIG).concat(['report-52']);
+    if(validTabs.includes(tab)){
+      currentTab=tab;currentUser=null;activeFilter=null;
+      const si=document.getElementById('searchInput');if(si)si.value='';
+      document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+      const sidebar=document.getElementById('sidebar'),searchBox=document.getElementById('searchBox');
+      if(tab==='report-52'){sidebar.style.display='none';searchBox.style.display='none';showReport('52users');return}
+      sidebar.style.display='';searchBox.style.display='';
+      DATA=ALL_DATA[tab]||{};init();
+      document.getElementById('content').innerHTML=`<div class="welcome"><h2>👈 选择左侧用户查看对话</h2><p>当前数据源：${DS_CONFIG[tab]?.name||tab}</p></div>`;
+    }
+  }
+  // 如果有user参数，选中对应用户
+  if(userIdx>0){
+    const allKeys=Object.keys(DATA);
+    const limit=currentTab==='hannuota'?100:allKeys.length;
+    const keys=allKeys.slice(0,limit);
+    if(userIdx>=1&&userIdx<=keys.length){
+      selectUser(keys[userIdx-1]);
+      // 滚动侧边栏到该用户
+      const el=document.querySelector(`.sidebar-item[data-uid="${keys[userIdx-1]}"]`);
+      if(el)el.scrollIntoView({block:'center'});
+    }
+  }
+}
+window.addEventListener('hashchange',navigateFromHash);
+
 Promise.all([
   Promise.all(Object.entries(DS_CONFIG).map(([k,c])=>fetch(c.file).then(r=>r.json()).then(d=>{ALL_DATA[k]=d}))),
   fetch('scenario.json').then(r=>r.json()).then(d=>{SCENARIO=d}).catch(()=>{}),
@@ -217,9 +253,21 @@ Promise.all([
     const u=Object.keys(d), t=u.reduce((s,x)=>s+d[x].length,0);
     document.getElementById('badge-'+k).textContent=u.length+'用户';
   }
-  switchTab('hannuota');
+  navigateFromHash();
 });
 
+let _skipHashChange=false;
+function updateHash(tab,userIdxFallback){
+  _skipHashChange=true;
+  let h='tab='+tab;
+  if(userIdxFallback){
+    const allKeys=Object.keys(ALL_DATA[tab]||{});
+    const idx=allKeys.indexOf(userIdxFallback)+1;
+    if(idx>0) h+='&user='+idx;
+  }
+  location.hash=h;
+  setTimeout(()=>{_skipHashChange=false},50);
+}
 function switchTab(tab){
   currentTab=tab; currentUser=null; activeFilter=null;
   const si=document.getElementById('searchInput');if(si)si.value='';
@@ -229,11 +277,13 @@ function switchTab(tab){
   if(tab==='report-52'){
     sidebar.style.display='none'; searchBox.style.display='none';
     showReport('52users');
+    updateHash(tab);
   } else {
     sidebar.style.display=''; searchBox.style.display='';
     DATA=ALL_DATA[tab]||{};
     init();
     document.getElementById('content').innerHTML=`<div class="welcome"><h2>👈 选择左侧用户查看对话</h2><p>当前数据源：${DS_CONFIG[tab].name}</p></div>`;
+    updateHash(tab);
   }
 }
 
@@ -281,6 +331,7 @@ function filterUsers(){
 let showNonNovel=true;
 function selectUser(uid){
   currentUser=uid;
+  updateHash(currentTab,uid);
   document.querySelectorAll('.sidebar-item').forEach(el=>el.classList.remove('active'));
   document.querySelector(`.sidebar-item[data-uid="${uid}"]`)?.classList.add('active');
   const records=DATA[uid];if(!records)return;
