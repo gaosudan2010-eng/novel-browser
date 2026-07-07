@@ -215,17 +215,25 @@ function navigateFromHash(){
   const params=new URLSearchParams(h);
   const tab=params.get('tab')||'hannuota';
   const userIdx=parseInt(params.get('user'))||0;
-  // 确保tab已切换
-  if(currentTab!==tab){
-    const validTabs=Object.keys(DS_CONFIG).concat(['report-52']);
-    if(validTabs.includes(tab)){
+  // 切换tab并初始化DATA
+  const validTabs=Object.keys(DS_CONFIG).concat(['report-52']);
+  if(validTabs.includes(tab)){
+    if(tab==='report-52'){
       currentTab=tab;currentUser=null;activeFilter=null;
-      const si=document.getElementById('searchInput');if(si)si.value='';
       document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
-      const sidebar=document.getElementById('sidebar'),searchBox=document.getElementById('searchBox');
-      if(tab==='report-52'){sidebar.style.display='none';searchBox.style.display='none';showReport('52users');return}
-      sidebar.style.display='';searchBox.style.display='';
-      DATA=ALL_DATA[tab]||{};init();
+      document.getElementById('sidebar').style.display='none';
+      document.getElementById('searchBox').style.display='none';
+      showReport('52users');
+      return;
+    }
+    currentTab=tab;currentUser=null;activeFilter=null;
+    const si=document.getElementById('searchInput');if(si)si.value='';
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+    document.getElementById('sidebar').style.display='';
+    document.getElementById('searchBox').style.display='';
+    DATA=ALL_DATA[tab]||{};
+    init();
+    if(!userIdx){
       document.getElementById('content').innerHTML=`<div class="welcome"><h2>👈 选择左侧用户查看对话</h2><p>当前数据源：${DS_CONFIG[tab]?.name||tab}</p></div>`;
     }
   }
@@ -235,9 +243,10 @@ function navigateFromHash(){
     const limit=currentTab==='hannuota'?100:allKeys.length;
     const keys=allKeys.slice(0,limit);
     if(userIdx>=1&&userIdx<=keys.length){
+      _skipHashChange=true;
       selectUser(keys[userIdx-1]);
-      // 滚动侧边栏到该用户
-      const el=document.querySelector(`.sidebar-item[data-uid="${keys[userIdx-1]}"]`);
+      setTimeout(()=>{_skipHashChange=false},100);
+      const el=document.querySelector(`.sidebar-item[data-uid="${CSS.escape(keys[userIdx-1])}"]`);
       if(el)el.scrollIntoView({block:'center'});
     }
   }
