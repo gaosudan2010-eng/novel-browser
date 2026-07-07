@@ -30,8 +30,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .sidebar-item:hover{background:#f8f8ff}
 .sidebar-item.active{background:#e8eaff;border-left:3px solid #4a4af0}
 .sidebar-item .uid{font-size:11px;color:#666;font-family:monospace;word-break:break-all}
+.uid-idx{font-size:10px;font-weight:700;color:#fff;background:#4a4af0;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sidebar-item .meta{font-size:12px;color:#999;margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
 .sidebar-item .meta span{background:#f0f0f0;padding:1px 6px;border-radius:3px}
+.tag-scene{background:#e1f5fe;color:#01579b;font-weight:500}
 .content{flex:1;overflow-y:auto;padding:16px 24px}
 .welcome{text-align:center;padding:60px 20px;color:#999}
 .welcome h2{font-size:20px;margin-bottom:8px;color:#666}
@@ -74,6 +76,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .novel-toggle:hover{background:#e8eaff}
 .novel-toggle.active{background:#4a4af0;color:#fff;border-color:#4a4af0}
 
+/* Notes styles */
+.notes-btn{padding:4px 12px;font-size:11px;background:#fff8e1;border:1px solid #ffe082;border-radius:4px;cursor:pointer;color:#f57c00;font-weight:500}
+.notes-btn:hover{background:#fff3cd;border-color:#ffc107}
+.notes-btn.has-note{background:#fff3cd;border-color:#f57c00}
+.notes-panel{background:#fffde7;border:1px solid #ffe082;border-radius:8px;padding:12px 16px;margin-bottom:12px}
+.notes-panel h4{font-size:13px;color:#f57c00;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.notes-panel .note-content{font-size:13px;color:#555;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.notes-panel .note-actions{margin-top:10px;display:flex;gap:8px}
+.notes-panel .note-actions button{padding:4px 12px;font-size:11px;border-radius:4px;cursor:pointer;border:1px solid #ddd;background:#fff}
+.notes-panel .note-actions button:hover{background:#f5f5f5}
+.notes-panel .note-actions button.primary{background:#f57c00;color:#fff;border-color:#f57c00}
+.notes-panel .note-actions button.primary:hover{background:#e65100}
+.notes-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000}
+.notes-modal-content{background:#fff;border-radius:12px;padding:24px;width:90%;max-width:500px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
+.notes-modal-content h3{font-size:16px;color:#333;margin-bottom:12px}
+.notes-modal-content textarea{width:100%;min-height:120px;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:13px;line-height:1.6;resize:vertical;font-family:inherit}
+.notes-modal-content textarea:focus{outline:none;border-color:#f57c00}
+.notes-modal-content .modal-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end}
+.notes-modal-content .modal-actions button{padding:8px 20px;font-size:13px;border-radius:6px;cursor:pointer;border:1px solid #ddd;background:#fff}
+.notes-modal-content .modal-actions button:hover{background:#f5f5f5}
+.notes-modal-content .modal-actions button.primary{background:#f57c00;color:#fff;border-color:#f57c00}
+.notes-modal-content .modal-actions button.primary:hover{background:#e65100}
+.notes-history{margin-top:16px;border-top:1px solid #ffe082;padding-top:12px}
+.notes-history h5{font-size:12px;color:#888;margin-bottom:6px}
+.notes-history .note-item{font-size:12px;color:#666;padding:4px 0;border-bottom:1px dashed #eee}
+.notes-history .note-item:last-child{border-bottom:none}
+
+/* Analysis card styles */
+.analysis-card{background:linear-gradient(135deg,#e8f5e9,#e3f2fd);border:1px solid #a5d6a7;border-radius:10px;padding:16px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.analysis-card .ac-title{font-size:15px;font-weight:700;color:#1b5e20;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.analysis-card .ac-title::before{content:'🔍';font-size:18px}
+.analysis-card .ac-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.analysis-card .ac-meta span{background:rgba(255,255,255,0.7);padding:3px 10px;border-radius:12px;font-size:11px;color:#555;border:1px solid rgba(0,0,0,0.08)}
+.analysis-card .ac-summary{font-size:13px;color:#333;line-height:1.8;margin-bottom:12px;padding:10px 14px;background:rgba(255,255,255,0.6);border-radius:6px;border-left:3px solid #43a047}
+.analysis-card .ac-section{margin-bottom:10px}
+.analysis-card .ac-section h5{font-size:12px;font-weight:600;color:#2e7d32;margin-bottom:4px}
+.analysis-card .ac-section ul{margin:0;padding-left:18px;font-size:12px;color:#555;line-height:1.8}
+.analysis-card .ac-needs{background:#fff3e0;border:1px solid #ffe0b2;border-radius:6px;padding:8px 12px;font-size:12px;color:#e65100;font-weight:500}
+
 /* Report styles */
 .report{max-width:900px;margin:0 auto;padding-bottom:40px}
 .report h2{font-size:18px;color:#1a1a2e;margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid #4a4af0}
@@ -92,10 +133,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .report .stat-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px 16px;min-width:120px;flex:1}
 .report .stat-card .num{font-size:22px;font-weight:700;color:#4a4af0}
 .report .stat-card .label{font-size:11px;color:#888;margin-top:2px}
-.report .case-box{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px;margin:8px 0 16px}
-.report .case-box h4{font-size:13px;color:#4a4af0;margin-bottom:6px}
-.report .case-box .case-meta{font-size:11px;color:#999;margin-bottom:8px}
-.report .case-box p{font-size:12px;line-height:1.7;color:#555}
+.report .case-box{background:#fff;border:1px solid #d0d0e8;border-radius:10px;padding:16px 20px;margin:10px 0 18px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.report .case-box h4{font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:6px}
+.report .case-box h4::before{content:'📋';font-size:14px}
+.report .case-box .case-meta{font-size:11px;color:#888;margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
+.report .case-box .case-meta span{background:#f0f0f5;padding:2px 8px;border-radius:10px}
+.report .case-box p{font-size:13px;line-height:1.8;color:#555;margin-bottom:6px}
+.report .case-box p+p{margin-top:8px}
+.report .case-box p b{color:#1a1a2e}
 .report .quote{background:#f5f5f5;border-left:3px solid #999;padding:6px 12px;margin:4px 0;font-size:12px;color:#666;font-style:italic}
 .report .bar-chart{margin:8px 0 16px}
 .report .bar-row{display:flex;align-items:center;margin:2px 0;font-size:11px}
@@ -103,8 +148,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .report .bar-fill{height:18px;background:#4a4af0;border-radius:3px;min-width:2px;transition:width .3s}
 .report .bar-val{padding-left:6px;color:#999}
 .report .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 16px}
-.report .compare-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px}
-.report .compare-card h4{font-size:12px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #eee}
+.report .compare-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px 16px;overflow-x:auto}
+.report .compare-card h4{font-size:13px;font-weight:700;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #eee}
+.report .compare-card table{font-size:11px;margin:4px 0 8px}
+.report .compare-card table th{padding:4px 6px}
+.report .compare-card table td{padding:3px 6px}
+.report .compare-card p{font-size:12px;line-height:1.7}
 .report .compare-card.a h4{color:#4a4af0}
 .report .compare-card.b h4{color:#e65100}
 .report .priority-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#fff;margin-left:4px}
@@ -114,6 +163,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 <body>
 <div class="header">
   <h1>📚 千问小说创作对话浏览器</h1>
+  <button onclick="exportAllNotes()" style="padding:4px 12px;font-size:12px;cursor:pointer;border:1px solid #4a4af0;background:#fff;color:#4a4af0;border-radius:4px">📥 导出所有备注</button>
   <span class="stats" id="globalStats"></span>
   <div class="search-box" id="searchBox">
     <input type="text" id="searchInput" placeholder="搜索query内容..." oninput="filterUsers()">
@@ -123,9 +173,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
   <div class="tab active" data-tab="hannuota" onclick="switchTab('hannuota')">汉诺塔抽样<span class="tab-badge" id="badge-hannuota">...</span></div>
   <div class="tab" data-tab="yangjie" onclick="switchTab('yangjie')">杨姐抽样100条<span class="tab-badge" id="badge-yangjie">...</span></div>
   <div class="sep-line"></div>
-  <div class="tab analysis-tab" data-tab="report-hannuota" onclick="switchTab('report-hannuota')">📊 汉诺塔分析</div>
-  <div class="tab analysis-tab" data-tab="report-yangjie" onclick="switchTab('report-yangjie')">📋 杨姐抽样分析</div>
-  <div class="tab analysis-tab" data-tab="report-summary" onclick="switchTab('report-summary')">🔍 汇总对比结论</div>
+  <div class="tab analysis-tab" data-tab="report-52" onclick="switchTab('report-52')">📊 52人精读分析</div>
 </div>
 <div class="main">
   <div class="sidebar" id="sidebar" style="display:none">
@@ -148,8 +196,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 <script>
 const DS_CONFIG = { hannuota:{file:'_nd.json',name:'汉诺塔抽样'}, yangjie:{file:'_nd_100.json',name:'杨姐抽样'} };
 let ALL_DATA={}, DATA={}, currentTab='hannuota', currentUser=null, activeFilter=null;
+let SCENARIO={};
+let ANALYSIS={};
 
-Promise.all(Object.entries(DS_CONFIG).map(([k,c])=>fetch(c.file).then(r=>r.json()).then(d=>{ALL_DATA[k]=d}))).then(()=>{
+/* 52个真实小说创作需求用户utdid集合 */
+const REAL_NOVEL_UIDS=new Set(["aYSYehRsry4DAN+OeKlAhivB","aiwBwXB4wS0DAHwjAq/rPXqO","ZvykxYlyr0wDAFDpsbXCGEzu","ZrcpYuuf8WADAPhaidhshzCC","ZJ9siRKUE/cDAD4Dyhz8LNQu","Y2qn9q4ozgUDAN5oAoKdMU0M","Z6CelizGtMMDADAv4/udRPkt","Zt5g3VlcANgDALQvUC2wLund","ZGoXbyCDxycDAIzL/To5iMd3","ZTDkA2GaNfIDAPi3BTidPqPS","aIBw0OGy59cDAO+A16jhHtz0","Ygclk22ix4sDAHOukyTlzvjA","akEcjC/abMADABcWooZmV2ai","acngq6Vi4L4DANIES3n/EeX9","aX826KZ/NwMDAOfuW11478oI","Z+lqjFHLZ/8DAJ+38wJD2DK4","adLqhWNtenQDAAn8dYN07wrQ","Z4H211S4fG8DAPJGyMerqibE","aT+8dLCm4SADAFGb2jAuJgQ8","ZZGQrat5HeMDAPOW3C0F3jp0","aJy0f7RjQq0DAF1krp4edpSP","ZuNvzw8s8JUDANXLZeS6ARlD","Xg0yi5qkCzADAFYgPHByenLf","akm01CNx1EEDAD+P7LJnguAd","ad9czXoOTEMDANfnAmfd1NWM","aizudjjZvUADAB32kzGSDa0U","aFDvUfVsM20DAFmT5XRqCFne","aikifE/0xAADAO9LPYFvKbgc","adeodcuNQRoDAOXWCCPOwmFU","YwHSPOmnmB0DANr0ATojqLwt","ahhMahoH1v4DAKGXKrlIyq57","aj3KmFLcOBADAMKmJG+xoXO1","aKBLmTWF0HsDANFuW5ED/Y42","aYFrI82XIsIDAHQxSd+bTV1M","Z29h+uAwIB0DAJzJMHWHPJEw","Y4aaF6CsBUUDAIDpTIK3kD29","aC2ChTgiSYIDAJuNuJBC0BCP","aifdVBdhEVgDAEAlCxJJd2SA","aaA1pb+oIpoDABYHtH5hfZQf","X0Izd730gPADAMHTd64e3KCO","aaqYouIK1+MDAH7JpbRkSA5L","aRl5EgmJNJ0DAE6N1inhXggU","aiDTsIjUc58DANk2xMIPDbt3","Xi5Jsg79h/oDACWlFjIkUNWf","aJpWeSphnyMDAFVrA5UR+AS6","Xd6UdNn5N9UDACnFI3ut/1OR","ZoH1nxjXFlUDAJJ9OPiCePJ0","aHOBa+rrCssDACdj85QZcX9P","aWdyCiaOFfoDAEG+btIVwHiI","aM42qv8X+ZEDAGbsmLkp2v7E","YQAY3gnL4OIDAJBTiM0+ml/C","Y7F7lxmSloMDAMWtnMuRyhyT"]);
+
+Promise.all([
+  Promise.all(Object.entries(DS_CONFIG).map(([k,c])=>fetch(c.file).then(r=>r.json()).then(d=>{ALL_DATA[k]=d}))),
+  fetch('_scenario.json').then(r=>r.json()).then(d=>{SCENARIO=d}).catch(()=>{}),
+  fetch('_analysis.json').then(r=>r.json()).then(d=>{ANALYSIS=d}).catch(()=>{})
+]).then(()=>{
   for(const[k,d]of Object.entries(ALL_DATA)){
     const u=Object.keys(d), t=u.reduce((s,x)=>s+d[x].length,0);
     document.getElementById('badge-'+k).textContent=u.length+'用户';
@@ -163,46 +220,55 @@ function switchTab(tab){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
   const sidebar=document.getElementById('sidebar'), searchBox=document.getElementById('searchBox');
 
-  if(tab==='hannuota'||tab==='yangjie'){
+  if(tab==='report-52'){
+    sidebar.style.display='none'; searchBox.style.display='none';
+    showReport('52users');
+  } else {
     sidebar.style.display=''; searchBox.style.display='';
     DATA=ALL_DATA[tab]||{};
     init();
     document.getElementById('content').innerHTML=`<div class="welcome"><h2>👈 选择左侧用户查看对话</h2><p>当前数据源：${DS_CONFIG[tab].name}</p></div>`;
-  } else {
-    sidebar.style.display='none'; searchBox.style.display='none';
-    if(tab==='report-hannuota') showReport('hannuota');
-    else if(tab==='report-yangjie') showReport('yangjie');
-    else if(tab==='report-summary') showReport('summary');
   }
 }
 
+function shortCat(tag){if(!tag||tag==='其他')return'其他';const p=tag.split('-');return p.length>=5?p[4]:tag;}
 function init(){
-  const sortedKeys=Object.keys(DATA);
+  const allKeys=Object.keys(DATA);
+  const limit=currentTab==='hannuota'?100:allKeys.length;
+  const sortedKeys=allKeys.slice(0,limit);
   const total=sortedKeys.reduce((s,u)=>s+DATA[u].length,0);
-  document.getElementById('globalStats').textContent=`${DS_CONFIG[currentTab]?.name||''} · ${sortedKeys.length} 用户 | ${total} 条对话`;
+  document.getElementById('globalStats').textContent=`${DS_CONFIG[currentTab]?.name||''} · ${sortedKeys.length}${limit<allKeys.length?'/'+allKeys.length:''} 用户 | ${total} 条对话`;
   const tc={};
-  sortedKeys.forEach(u=>{DATA[u].forEach(r=>{const s=r[6]||'其他';tc[s]=(tc[s]||0)+1})});
+  sortedKeys.forEach(u=>{DATA[u].forEach(r=>{const s=shortCat(r[6]);tc[s]=(tc[s]||0)+1})});
   const fb=document.getElementById('filterBar');
   const types=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,8);
   fb.innerHTML='<span class="filter-btn active" onclick="setTypeFilter(null,event)">全部</span>'+types.map(([t,c])=>`<span class="filter-btn" onclick="setTypeFilter('${escAttr(t)}',event)">${escHtml(t)}<span class="count-badge">${c}</span></span>`).join('');
   renderUserList(sortedKeys);
 }
 function renderUserList(users){
+  const allKeys=Object.keys(DATA);
   let h='';
   users.forEach(u=>{
-    const r=DATA[u],ss=new Set(r.map(x=>x[0])),ts=[...new Set(r.map(x=>x[6]).filter(Boolean))],hr=r.some(x=>x[8]>0);
+    const idx=allKeys.indexOf(u)+1;
+    const r=DATA[u],ss=new Set(r.map(x=>x[0])),ts=[...new Set(r.map(x=>shortCat(x[6])).filter(Boolean))],hr=r.some(x=>x[8]>0);
     const us=u.length>20?u.slice(0,10)+'...'+u.slice(-6):u;
-    h+=`<div class="sidebar-item" data-uid="${escAttr(u)}" onclick="selectUser('${escAttr(u)}')"><div class="uid">${escHtml(us)}</div><div class="meta"><span>${r.length}轮</span><span>${ss.size}会话</span>${hr?'<span style="background:#fce4ec;color:#c62828">有重试</span>':''}${ts.length?`<span>${escHtml(ts[0])}</span>`:''}</div></div>`;
+    const scene=SCENARIO[u]||'';
+    const sceneTag=scene?`<span class="tag-scene">${escHtml(scene)}</span>`:'';
+    const isRealNovel=REAL_NOVEL_UIDS.has(u);
+    const realTag=isRealNovel?'<span style="background:#e8f5e9;color:#2e7d32;font-weight:600">✅ 真实小说创作</span>':'';
+    h+=`<div class="sidebar-item" data-uid="${escAttr(u)}" onclick="selectUser('${escAttr(u)}')" style="${isRealNovel?'border-left:3px solid #2e7d32':''}"><div style="display:flex;align-items:center;gap:6px"><span class="uid-idx" style="${isRealNovel?'background:#2e7d32':''}">${idx}</span><div class="uid">${escHtml(us)}</div></div><div class="meta">${realTag}${sceneTag}<span>${r.length}轮</span><span>${ss.size}会话</span>${hr?'<span style="background:#fce4ec;color:#c62828">有重试</span>':''}${ts.length?`<span>${escHtml(ts[0])}</span>`:''}</div></div>`;
   });
   document.getElementById('userList').innerHTML=h;
 }
 function setTypeFilter(t,e){activeFilter=t;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(e&&e.target)e.target.classList.add('active');filterUsers()}
 function filterUsers(){
   const q=(document.getElementById('searchInput').value||'').toLowerCase();
-  const allUsers=Object.keys(DATA);
-  renderUserList(allUsers.filter(u=>{
+  const allKeys=Object.keys(DATA);
+  const limit=currentTab==='hannuota'?100:allKeys.length;
+  const displayKeys=allKeys.slice(0,limit);
+  renderUserList(displayKeys.filter(u=>{
     if(q&&!DATA[u].some(r=>(r[4]||'').toLowerCase().includes(q)))return false;
-    if(activeFilter&&!DATA[u].some(r=>r[6]===activeFilter))return false;
+    if(activeFilter&&!DATA[u].some(r=>shortCat(r[6])===activeFilter))return false;
     return true;
   }));
 }
@@ -213,11 +279,11 @@ function selectUser(uid){
   document.querySelector(`.sidebar-item[data-uid="${uid}"]`)?.classList.add('active');
   const records=DATA[uid];if(!records)return;
   const c=document.getElementById('content');
-  const ud=uid.length>20?uid.slice(0,12)+'...'+uid.slice(-6):uid;
+  const ud=uid;
   const hasNovelFlag=records.length>0&&records[0].length>10;
   const novelCount=hasNovelFlag?records.filter(r=>r[10]===1).length:records.length;
   const nonNovelCount=records.length-novelCount;
-  let h=`<div style="margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-size:13px;color:#666"><strong>${escHtml(ud)}</strong> — 共 ${records.length} 轮${hasNovelFlag?'（小说'+novelCount+'轮 + 其他'+nonNovelCount+'轮）':''}</span><button class="expand-all" onclick="toggleAll(true)">全部展开</button><button class="expand-all" onclick="toggleAll(false)">全部折叠</button>${hasNovelFlag?`<button class="novel-toggle ${showNonNovel?'active':''}" onclick="toggleNonNovel()">${showNonNovel?'🔽 隐藏非小说轮次':'▶ 显示非小说轮次'}</button>`:''}</div>`;
+  let h=`<div style="margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-size:13px;color:#666"><strong>${escHtml(ud)}</strong> — 共 ${records.length} 轮${hasNovelFlag?'（小说'+novelCount+'轮 + 其他'+nonNovelCount+'轮）':''}</span><button class="expand-all" onclick="toggleAll(true)">全部展开</button><button class="expand-all" onclick="toggleAll(false)">全部折叠</button>${hasNovelFlag?`<button class="novel-toggle ${showNonNovel?'active':''}" onclick="toggleNonNovel()">${showNonNovel?'🔽 隐藏非小说轮次':'▶ 显示非小说轮次'}</button>`:''} <button class="notes-btn ${getNote(uid)?'has-note':''}" onclick="openNotesModal('${escAttr(uid)}')">📝 备注${getNote(uid)?'(已添加)':''}</button></div>${renderNotesPanel(uid)}${renderAnalysisCard(uid)}`;
   let ls='';
   records.forEach(r=>{
     const sid=r[0],turn=r[1],tt=r[2],time=r[3],q=r[4],resp=r[5],st=r[6],v=r[7],rg=r[8],it=r[9],isNovel=hasNovelFlag?r[10]:1,intent3=r[11]||'';
@@ -225,7 +291,7 @@ function selectUser(uid){
     if(hidden)return;
     if(sid!==ls){h+=`<div class="session-sep">── 会话 ${escHtml(sid)} · 共${tt}轮 ──</div>`;ls=sid}
     const tags=[];
-    if(st)tags.push(`<span class="tag ${isNovel?'tag-type':'tag-non-novel'}">${escHtml(isNovel?st:intent3)}</span>`);
+    if(st)tags.push(`<span class="tag ${isNovel?'tag-type':'tag-non-novel'}">${escHtml(isNovel?shortCat(st):intent3)}</span>`);
     if(!isNovel)tags.push('<span class="tag tag-non-novel">非小说</span>');
     if(v)tags.push('<span class="tag tag-voice">🎤语音</span>');
     if(rg)tags.push(`<span class="tag tag-regen">🔄重新生成×${rg}</span>`);
@@ -234,20 +300,343 @@ function selectUser(uid){
   });
   c.innerHTML=h;c.scrollTop=0;
 }
+function renderAnalysisCard(uid){
+  const a=ANALYSIS[uid];if(!a)return '';
+  let h=`<div class="analysis-card"><div class="ac-title">${escHtml(a.title)}</div>`;
+  h+=`<div class="ac-meta">`;
+  if(a.age)h+=`<span>👤 ${escHtml(a.age)}</span>`;
+  if(a.input)h+=`<span>⌨️ ${escHtml(a.input)}</span>`;
+  if(a.duration)h+=`<span>📅 ${escHtml(a.duration)}</span>`;
+  if(a.turns)h+=`<span>💬 ${escHtml(a.turns)}</span>`;
+  h+=`</div>`;
+  if(a.summary)h+=`<div class="ac-summary">${escHtml(a.summary)}</div>`;
+  if(a.issues&&a.issues.length){
+    h+=`<div class="ac-section"><h5>⚠️ 关键问题</h5><ul>${a.issues.map(i=>'<li>'+escHtml(i)+'</li>').join('')}</ul></div>`;
+  }
+  if(a.needs)h+=`<div class="ac-needs">🎯 核心需求：${escHtml(a.needs)}</div>`;
+  h+=`</div>`;
+  return h;
+}
 function toggleNonNovel(){showNonNovel=!showNonNovel;if(currentUser)selectUser(currentUser)}
 function toggleAll(o){document.querySelectorAll('.conv-body').forEach(el=>el.classList.toggle('open',o))}
 function escHtml(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
 function escAttr(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
+/* ===== NOTES SYSTEM ===== */
+const NOTES_KEY='novel_browser_notes';
+function getNotesStore(){try{return JSON.parse(localStorage.getItem(NOTES_KEY))||{}}catch(e){return{}}}
+function saveNotesStore(store){localStorage.setItem(NOTES_KEY,JSON.stringify(store))}
+function getNoteKey(uid){return (currentTab||'hannuota')+'_'+uid}
+function getNote(uid){const store=getNotesStore();return store[getNoteKey(uid)]||null}
+function saveNote(uid,text){
+  const store=getNotesStore();
+  const key=getNoteKey(uid);
+  const existing=store[key];
+  store[key]={
+    text:text,
+    updated:new Date().toLocaleString('zh-CN'),
+    history:existing?[{...existing,text:existing.text},...(existing.history||[])]:[]
+  };
+  saveNotesStore(store);
+}
+function deleteNote(uid){
+  if(!confirm('确定删除该备注？'))return;
+  const store=getNotesStore();
+  delete store[getNoteKey(uid)];
+  saveNotesStore(store);
+  if(currentUser)selectUser(currentUser);
+}
+function exportAllNotes(){
+  const store=getNotesStore();
+  const data=Object.keys(DATA);
+  const out=data.map((uid,i)=>{const k='hannuota_'+uid;const n=store[k];return{idx:i+1,utdid:uid,note:n?n.text:'',updated:n?n.updated:''}});
+  const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='_notes_export.json';a.click();
+}
+function renderNotesPanel(uid){
+  const note=getNote(uid);
+  if(!note)return '';
+  let h=`<div class="notes-panel"><h4>📝 备注</h4><div class="note-content">${escHtml(note.text)}</div><div class="note-actions"><button class="primary" onclick="openNotesModal('${escAttr(uid)}')">修改</button><button onclick="deleteNote('${escAttr(uid)}')">删除</button><span style="font-size:11px;color:#999;margin-left:auto">更新于: ${note.updated}</span></div>`;
+  if(note.history&&note.history.length>0){
+    h+=`<div class="notes-history"><h5>历史版本 (${note.history.length})</h5>`;
+    note.history.slice(0,5).forEach(item=>{
+      h+=`<div class="note-item">${escHtml(item.text.slice(0,100))}${item.text.length>100?'...':''} <span style="color:#aaa;font-size:10px">${item.updated}</span></div>`;
+    });
+    h+=`</div>`;
+  }
+  h+=`</div>`;
+  return h;
+}
+function openNotesModal(uid){
+  const note=getNote(uid);
+  const existing=note?note.text:'';
+  const modal=document.createElement('div');
+  modal.className='notes-modal';
+  modal.innerHTML=`<div class="notes-modal-content"><h3>📝 用户备注</h3><p style="font-size:12px;color:#888;margin-bottom:8px">为用户 <code>${escHtml(uid.length>20?uid.slice(0,12)+'...'+uid.slice(-6):uid)}</code> 添加备注（将保存在本地浏览器）</p><textarea id="notesInput" placeholder="输入备注内容，如：\n- 用户创作风格/特点\n- 对话中发现的问题\n- 值得关注的行为模式\n- 后续可优化的方向">${escHtml(existing)}</textarea><div class="modal-actions"><button onclick="closeNotesModal()">取消</button><button class="primary" onclick="confirmSaveNote('${escAttr(uid)}')">保存</button></div></div>`;
+  document.body.appendChild(modal);
+  modal.onclick=function(e){if(e.target===modal)closeNotesModal()};
+  document.getElementById('notesInput').focus();
+}
+function closeNotesModal(){document.querySelectorAll('.notes-modal').forEach(el=>el.remove())}
+function confirmSaveNote(uid){
+  const text=document.getElementById('notesInput').value.trim();
+  if(!text){if(confirm('备注为空，是否删除？')){deleteNote(uid);closeNotesModal()}return}
+  saveNote(uid,text);
+  closeNotesModal();
+  if(currentUser)selectUser(currentUser);
+}
+
 /* ===== REPORTS ===== */
 function showReport(type){
   const c=document.getElementById('content');
   document.getElementById('globalStats').textContent='分析报告';
-  if(type==='hannuota') c.innerHTML=reportHannuota();
+  if(type==='52users') c.innerHTML=report52Users();
+  else if(type==='hannuota') c.innerHTML=reportHannuota();
   else if(type==='yangjie') c.innerHTML=reportYangjie();
+  else if(type==='deep') c.innerHTML=reportDeep();
   else c.innerHTML=reportSummary();
   c.scrollTop=0;
 }
+
+function report52Users(){return `<div class="report">
+<h2>52个小说创作用户全面深入分析</h2>
+<p>数据来源：汉诺塔session抽样-小说.csv ｜ 前100个utdid精读 ｜ 52个判定为真实小说创作需求 ｜ 2,776条query</p>
+
+<div class="stat-row">
+  <div class="stat-card"><div class="num">52</div><div class="label">真实小说创作用户</div></div>
+  <div class="stat-card"><div class="num">2,776</div><div class="label">总query数</div></div>
+  <div class="stat-card"><div class="num">53.4</div><div class="label">人均query数</div></div>
+  <div class="stat-card"><div class="num">1,353</div><div class="label">平均回复长度(字)</div></div>
+  <div class="stat-card"><div class="num">157</div><div class="label">重新生成总次数</div></div>
+</div>
+
+<h3>一、创作阶段分布</h3>
+<table>
+<tr><th>阶段</th><th>人数</th><th>占比</th><th>平均行数</th><th>平均语音</th><th>平均时长</th></tr>
+<tr><td><b>续写/连载期</b></td><td>28</td><td>54%</td><td>70行</td><td>23%</td><td>5.9h</td></tr>
+<tr><td><b>角色扮演推演期</b></td><td>10</td><td>19%</td><td>109行</td><td>44%</td><td>7.6h</td></tr>
+<tr><td>设定/灵感期</td><td>9</td><td>17%</td><td>9行</td><td>7%</td><td>2.1h</td></tr>
+<tr><td>阅读/找书期</td><td>3</td><td>6%</td><td>31行</td><td>0%</td><td>4.6h</td></tr>
+</table>
+<div class="insight"><b>核心发现：</b>超过一半用户已进入正文产出阶段，但"设定/灵感期"用户平均仅9轮就停止——<b>从设定到正文之间的转化是最大的流失漏斗</b>。</div>
+
+<h3>二、5大典型用户画像</h3>
+<table>
+<tr><th>画像</th><th>人数</th><th>平均行数</th><th>语音占比</th><th>特征描述</th></tr>
+<tr><td><b>A. 高产连载型</b></td><td>18</td><td>70行</td><td>23%</td><td>纯文本为主，query长(粘贴正文)，反复修改续写。典型：#3(211行)、#7(168行)、#61(113行)</td></tr>
+<tr><td><b>B. 语音口述型</b></td><td>9</td><td>81行</td><td>90%</td><td>语音50-100%，口语化输入，边想边说。典型：#89(100%语音)、#47(99%语音)、#34(98%语音)</td></tr>
+<tr><td><b>C. 设定搭建型</b></td><td>9</td><td>9行</td><td>7%</td><td>专注世界观/人设/术法体系，尚未进入正文。典型：#45(1条OC人设)、#64(9次重复调整帝王设定)</td></tr>
+<tr><td><b>D. 角色扮演推演型</b></td><td>8</td><td>94行</td><td>30%</td><td>括号描写动作，多角色对话，混合闲聊与创作。典型：#18(267行)、#34(296行)、#37(77行)</td></tr>
+<tr><td><b>E. 轻度/尝鲜型</b></td><td>6</td><td>2行</td><td>0%</td><td>仅1-3轮交互，尝试性使用后未继续。典型：#40(找书)、#45(OC人设)、#85(火影同人)</td></tr>
+</table>
+
+<h3>三、题材分布（多标签）</h3>
+<table>
+<tr><th>题材</th><th>人数</th><th>代表用户</th></tr>
+<tr><td><b>同人二创</b></td><td>14</td><td>鬼灭/斗罗/火影/奥特曼/长相思/加勒比海盗/斩神/ABO等14个不同IP</td></tr>
+<tr><td>修仙/玄幻</td><td>7</td><td>#7修仙穿越、#66察言观色术法、#79白衣剑仙、#88番茄修道</td></tr>
+<tr><td>言情/甜宠</td><td>7</td><td>#57女仆装系列、#70科研纯爱、#95 ABO校园</td></tr>
+<tr><td><b>擦边/成人向</b></td><td>7</td><td>#18病娇束缚(267行)、#57丝袜旗袍(67行)、#61身材描写(113行)</td></tr>
+<tr><td>古代权谋/宫廷</td><td>6</td><td>#50春山破局、#64大雍王朝、#77隋末唐初</td></tr>
+<tr><td>都市/现代</td><td>6</td><td>#3校园悬疑(211行)、#61外国女人、#78经理秘书</td></tr>
+<tr><td>悬疑/灵异</td><td>4</td><td>#35茅山捉鬼录、#75雪夜鬼话、#92斩神</td></tr>
+<tr><td>科幻/末世</td><td>3</td><td>#23星际母舰、#71超神世界、#87末世执行官</td></tr>
+<tr><td>穿越/重生</td><td>3</td><td>#7、#71、#77</td></tr>
+</table>
+<div class="insight"><b>关键发现：</b><br>
+① <b>同人二创是最大入口</b>（14人/27%），但人均仅28行，远低于原创（75行）——同人用户更轻量<br>
+② <b>擦边/成人向内容占13.5%</b>（7人），部分用户投入大量轮次，是高粘性群体<br>
+③ 同人IP来源<b>极度分散</b>：14人来自14个不同IP，无集中趋势</div>
+
+<h3>四、输入模式分析</h3>
+<div class="compare-grid">
+  <div class="compare-card a">
+    <h4>① 长文本粘贴型（8人）</h4>
+    <p>query均长≥200字，最长达1177字（#45的OC设定）<br>行为：粘贴正文→续写→再粘贴修改→再续写<br>代表：#27(均长540字)、#3(均长236字)</p>
+  </div>
+  <div class="compare-card b">
+    <h4>② 语音口述型（13人）</h4>
+    <p>语音≥50%，query均长25-50字<br>口语化（"呃""嗯""那个"），常需AI理解模糊指令<br>代表：#89(100%语音)、#47(99%语音)</p>
+  </div>
+  <div class="compare-card a">
+    <h4>③ 短指令迭代型（2人）</h4>
+    <p>"继续/下一章"占比≥30%<br>#35的38轮中33条是重复的"下一章"——批量生成章节<br>代表：#35(短指令92%)、#70(33%)</p>
+  </div>
+  <div class="compare-card b">
+    <h4>④ 重复发送现象</h4>
+    <p>TOP3重复发送率：<br>#35(87%)、#20(81%)、#25(46%)<br>原因：①网络重发 ②微调后重发 ③AI未按预期生成而重发</p>
+  </div>
+</div>
+
+<h3>五、互动质量与痛点</h3>
+<table>
+<tr><th>指标</th><th>数值</th><th>说明</th></tr>
+<tr><td>重新生成总次数</td><td><b>157</b></td><td>集中在#20(45次)、#25(33次)、#61(26次)、#31(23次)</td></tr>
+<tr><td>打断总次数</td><td>63</td><td>集中在#14(33次)、#98(9次)</td></tr>
+<tr><td>点赞</td><td>7</td><td>仅#79一人（7次），形同虚设</td></tr>
+<tr><td>点踩</td><td>1</td><td>极低</td></tr>
+<tr><td>深度思考使用</td><td>10次/10人</td><td>渗透率仅19%，极低</td></tr>
+</table>
+<h4>痛点关键词提取（2,776条query）</h4>
+<table>
+<tr><th>痛点类别</th><th>命中条数</th><th>占比</th><th>典型query</th></tr>
+<tr><td><b>改/重写/不行</b></td><td>352</td><td>12.7%</td><td>每8条query就有1条在要求修改</td></tr>
+<tr><td>继续/下一章</td><td>134</td><td>4.8%</td><td>批量推进章节的典型模式</td></tr>
+<tr><td><b>AI不听话</b></td><td>11</td><td>0.4%</td><td>#66: "你能不能把我的原意生成就行，不要添加太多的东西啊"</td></tr>
+<tr><td>衔接/连贯</td><td>14</td><td>0.5%</td><td>用户关注上下文衔接质量</td></tr>
+<tr><td>长度问题</td><td>70</td><td>2.5%</td><td>太短/太长/扩写/缩写</td></tr>
+</table>
+<div class="insight"><b>深层痛点：</b>虽然直接抱怨只有11条，但12.7%的query在要求"改/重写"，157次重新生成。<b>AI过度自由发挥与用户精准控制需求之间的矛盾</b>是核心痛点。控制意图最强用户：#66(7次要求AI不要乱加)、#17(4次)、#98(3次)。</div>
+
+<h3>六、高粘性 vs 流失用户对比</h3>
+<div class="compare-grid">
+  <div class="compare-card a">
+    <h4>🟢 高粘性用户（时长>10h且轮次>50）— 10人</h4>
+    <table style="font-size:11px">
+    <tr><th>#</th><th>时长</th><th>行数</th><th>语音</th><th>题材</th></tr>
+    <tr><td>79</td><td>23.5h</td><td>68</td><td>87%</td><td>仙侠</td></tr>
+    <tr><td>37</td><td>21.2h</td><td>77</td><td>0%</td><td>警察家庭剧</td></tr>
+    <tr><td>78</td><td>20.5h</td><td>65</td><td>0%</td><td>都市言情</td></tr>
+    <tr><td>3</td><td>18.1h</td><td>211</td><td>0%</td><td>校园悬疑</td></tr>
+    <tr><td>7</td><td>14.7h</td><td>168</td><td>0%</td><td>修仙穿越</td></tr>
+    <tr><td>66</td><td>13.5h</td><td>59</td><td>85%</td><td>修仙</td></tr>
+    <tr><td>61</td><td>12.8h</td><td>113</td><td>0%</td><td>都市</td></tr>
+    </table>
+    <p style="margin-top:6px"><b>特征：</b>100%纯文本或重度语音，有明确章节推进目标</p>
+  </div>
+  <div class="compare-card b">
+    <h4>🔴 流失/尝鲜用户（≤3轮）— 6人</h4>
+    <table style="font-size:11px">
+    <tr><th>#</th><th>行数</th><th>需求</th></tr>
+    <tr><td>40</td><td>2</td><td>找短文后续</td></tr>
+    <tr><td>45</td><td>1</td><td>OC人设</td></tr>
+    <tr><td>65</td><td>3</td><td>人物设定整理</td></tr>
+    <tr><td>70</td><td>3</td><td>言情开头</td></tr>
+    <tr><td>83</td><td>2</td><td>长相思同人</td></tr>
+    <tr><td>85</td><td>1</td><td>火影同人</td></tr>
+    </table>
+    <p style="margin-top:6px"><b>流失原因：</b>5/6是同人或设定需求——单次满足后即离开</p>
+  </div>
+</div>
+
+<h3>七、补充视角：回复长度与深度思考</h3>
+<div class="compare-grid">
+  <div class="compare-card a">
+    <h4>回复长度分布</h4>
+    <p><b>全体平均：1,353字/条</b><br><br>
+    最长TOP5（设定类AI输出最长）：<br>
+    ① #68 克苏鲁设定 — 2,714字<br>
+    ② #64 大雍王朝 — 2,643字<br>
+    ③ #83 长相思同人 — 2,518字<br><br>
+    最短TOP5（角色扮演短对话）：<br>
+    ① #34 角色扮演 — 348字<br>
+    ② #58 游戏神明 — 395字<br>
+    ③ #31 角色扮演 — 554字</p>
+  </div>
+  <div class="compare-card b">
+    <h4>深度思考功能使用</h4>
+    <p><b>10次使用 / 10人 / 渗透率19%</b><br><br>
+    小说创作场景下用户更依赖快速迭代而非深度推理。<br><br>
+    <b>点赞/点踩功能形同虚设</b>：<br>
+    52人共2,776条交互，仅7次点赞（全来自#79）、1次点踩。<br>
+    用户更习惯通过"重新生成"和"改"来表达不满，而非显式反馈。</p>
+  </div>
+</div>
+
+<h3>八、典型Case分析</h3>
+
+<div class="case-box">
+  <h4>Case 1：#3 — 高产连载型标杆（211行 / 18.1h / 纯文本）</h4>
+  <div class="case-meta"><span>题材：现代校园悬疑</span><span>画像：A.高产连载型</span><span>阶段：续写/连载期</span></div>
+  <p><b>用户行为：</b>粘贴大段小说正文（角色关系涉及谭若莲、曾宣博等），让AI加工细节。211条query中86条重复（重复率41%），说明用户反复微调同一段内容。</p>
+  <p><b>典型query：</b>"清北屏蔽生高考赋分后704的曾宣博的父母是父母吗？比曾宣博大三届的高中...谭忍冬..."</p>
+  <p><b>痛点：</b>大量重复发送（41%），可能因AI未按预期生成而反复重发。</p>
+  <p><b>产品启示：</b>需要"差异对比"功能，让用户看到每次修改的变化，避免盲目重发。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 2：#35 — 短指令批量生成型（38行 / 0.8h / 纯文本）</h4>
+  <div class="case-meta"><span>题材：悬疑灵异(茅山捉鬼录)</span><span>画像：A.高产连载型</span><span>阶段：续写/连载期</span></div>
+  <p><b>用户行为：</b>先让AI生成完整大纲→获取简介→然后连续33次发送"下一章"，批量生成60章小说。</p>
+  <p><b>典型query：</b>"帮我写一个小说情节，悬疑类，男频，逆袭...《茅山捉鬼录》长篇小说完整大纲"→"先弄一个可以吸引眼球的简介"→"可以"→"下一章"×33</p>
+  <p><b>痛点：</b>用户需要"批量生成+章节管理"功能，当前只能逐章"下一章"推进。</p>
+  <p><b>产品启示：</b>提供"一键生成N章"和章节管理面板。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 3：#66 — "AI不听话"痛点代表（59行 / 13.5h / 语音85%）</h4>
+  <div class="case-meta"><span>题材：修仙(察言观色术法)</span><span>画像：B.语音口述型</span><span>阶段：续写/连载期</span></div>
+  <p><b>用户行为：</b>语音口述修仙小说设定和正文，与AI探讨"察言观色"术法体系的设计。7次明确要求AI不要乱加内容。</p>
+  <p><b>典型query：</b>"你能不能把我的原意生成就行，不要添加太多的东西啊。" / "你不要添加太多，只是把我这句话稍微顺一下，原意生成就行。"</p>
+  <p><b>痛点：</b>AI过度自由发挥，用户只想润色而非扩写。</p>
+  <p><b>产品启示：</b>提供"仅润色不扩写"的严格模式。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 4：#64 — 设定死循环代表（9行 / 0.3h / 纯文本）</h4>
+  <div class="case-meta"><span>题材：古代权谋(大雍王朝)</span><span>画像：C.设定搭建型</span><span>阶段：设定/灵感期</span></div>
+  <p><b>用户行为：</b>连续9轮发送几乎完全相同的帝王设定文本（"大雍王朝最年轻的帝王。19岁。一统天下的年轻帝王..."），反复微调设定细节，始终未进入正文。</p>
+  <p><b>典型query：</b>9条query内容几乎一致，仅个别字词调整。</p>
+  <p><b>痛点：</b>陷入设定细节反复调整，无法跨越到正文写作。</p>
+  <p><b>产品启示：</b>为设定期用户提供"一键开始写第一章"的引导，避免设定死循环。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 5：#89 — 纯语音创作代表（35行 / 0.4h / 语音100%）</h4>
+  <div class="case-meta"><span>题材：同人(奥特曼大战编排)</span><span>画像：B.语音口述型</span><span>阶段：续写/连载期</span></div>
+  <p><b>用户行为：</b>100%语音输入，口述奥特曼同人故事的大战场面编排。query均长仅27字，但交互轮次35行。</p>
+  <p><b>典型query：</b>语音口述，内容为奥特曼大战的场景描述和剧情推进。</p>
+  <p><b>痛点：</b>语音输入的标点断句和长文本处理可能影响生成质量。</p>
+  <p><b>产品启示：</b>优化语音创作体验，自动标点和分段。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 6：#79 — 最高粘性用户（68行 / 23.5h / 语音87%）</h4>
+  <div class="case-meta"><span>题材：仙侠(白衣剑仙君无敌)</span><span>画像：B.语音口述型</span><span>阶段：续写/连载期</span></div>
+  <p><b>用户行为：</b>使用时长最长的用户（23.5小时），语音87%，创作仙侠小说。唯一给出点赞的用户（7次点赞），表明对AI输出质量高度满意。</p>
+  <p><b>典型query：</b>语音口述白衣剑仙的术法体系和战斗场景。</p>
+  <p><b>亮点：</b>高粘性+高满意度，是理想用户画像。</p>
+  <p><b>产品启示：</b>研究该用户的使用模式，提炼"最佳实践"引导其他用户。</p>
+</div>
+
+<div class="case-box">
+  <h4>Case 7：#18 — 擦边高粘性代表（267行 / 7.5h / 语音69%）</h4>
+  <div class="case-meta"><span>题材：擦边/角色扮演(病娇束缚)</span><span>画像：D.角色扮演推演型</span><span>阶段：角色扮演推演期</span></div>
+  <p><b>用户行为：</b>267行交互，通过角色扮演推进病娇题材剧情。大量重复调整细节（肉色裤袜、裙子、痒痒粉等），反复微调相同段落。</p>
+  <p><b>典型query：</b>"然后那些痒痒粉在我身上，只会越来越痒...你让阿言揉我的脚心..."（大量类似段落反复修改）</p>
+  <p><b>痛点：</b>擦边内容高粘性但产品难以公开服务，需要合理的内容分级机制。</p>
+  <p><b>产品启示：</b>设计内容分级机制而非简单封禁。</p>
+</div>
+
+<h3>九、核心发现与产品启示</h3>
+<div class="insight"><b>发现1：创作阶段漏斗明显</b><br>
+设定期（9人，平均9轮）→续写期（28人，平均70轮）。从设定到正文的转化率约3:1，大量用户卡在设定阶段反复调整。<br><br>
+<b>发现2：同人创作是入口但不是留存</b><br>
+14人同人用户人均仅28行，远低于原创75行。同人IP极度分散（14人14个IP），用户带着各自喜欢的IP来尝试，但缺乏持续创作动力。<br><br>
+<b>发现3：语音创作群体不可忽视</b><br>
+13人语音≥50%，其中3人语音≥98%。语音用户query更短更口语化，但交互轮次不低。<br><br>
+<b>发现4："AI不听话"是深层痛点</b><br>
+12.7%的query在要求"改/重写"，157次重新生成。AI过度自由发挥与用户精准控制需求之间的矛盾。<br><br>
+<b>发现5：擦边内容是隐性高粘性需求</b><br>
+7人涉及擦边/成人向内容，投入度远高于平均水平。这类用户粘性极强但产品难以公开服务。<br><br>
+<b>发现6：深度思考功能几乎未被使用</b><br>
+10次使用/10人，渗透率仅19%。小说创作场景下用户更依赖快速迭代而非深度推理。<br><br>
+<b>发现7：点赞/点踩功能形同虚设</b><br>
+52人共2776条交互，仅7次点赞、1次点踩。用户更习惯通过"重新生成"和"改"来表达不满。</div>
+
+<h3>十、产品设计启示</h3>
+<table>
+<tr><th>#</th><th>启示</th><th>对应痛点</th><th>优先级</th></tr>
+<tr><td>1</td><td><b>设定→正文转化引导</b>：为设定期用户提供"一键开始写第一章"引导，避免设定死循环</td><td>#64设定死循环</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>2</td><td><b>同人创作模板</b>：为热门IP预设角色卡和世界观模板，降低同人创作门槛</td><td>同人用户低留存</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>3</td><td><b>语音创作优化</b>：优化语音输入的标点断句和长文本处理</td><td>13人重度语音用户</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>4</td><td><b>"忠于原意"模式</b>：提供"仅润色不扩写"的严格模式</td><td>#66 AI不听话</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>5</td><td><b>章节管理面板</b>：批量生成+章节管理功能</td><td>#35连续33次"下一章"</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>6</td><td><b>内容分级机制</b>：设计合理的内容分级而非简单封禁</td><td>7人擦边高粘性</td><td><span class="priority-tag p2">P2</span></td></tr>
+<tr><td>7</td><td><b>差异对比功能</b>：让用户看到每次修改的变化，避免盲目重发</td><td>#3重复率41%</td><td><span class="priority-tag p1">P1</span></td></tr>
+</table>
+
+</div>`;}
 
 function reportHannuota(){return `<div class="report">
 <h2>汉诺塔抽样 · 小说创作深度特征分析</h2>
@@ -607,6 +996,489 @@ function reportYangjie(){return `<div class="report">
 <tr><td>多角色戏份不均</td><td>会话3</td><td>~15%</td><td>修罗场角色比重不可控</td></tr>
 <tr><td>极简指令随机性</td><td>会话63、84</td><td>~10%</td><td>"续写""1"生成方向随机</td></tr>
 </table>
+</div>`}
+
+function reportDeep(){return `<div class="report">
+<h2>系统性深度分析 · 小说创作体验优化全景报告</h2>
+<p>数据基础：汉诺塔 11,295条(1000会话) + 杨姐 4,473条(100会话) ｜ 15个维度 ｜ 双数据交叉验证 ｜ 目标：优化体验 + 建立心智</p>
+
+<div class="insight" style="background:#fff3cd;border-color:#ffe69c"><b>方法论说明：</b>本报告对两份数据进行了<b>全量逐条扫描</b>（杨姐4,473条+汉诺塔11,295条，共15,768条），通过5组交叉验证确保结论可靠性。汉诺塔=大样本体检（1000会话），杨姐=深度会话手术（100会话，平均44.7轮，最深865轮）。</div>
+
+<h2 style="margin-top:24px">Part A：定量发现（汉诺塔大样本）</h2>
+
+<h3>一、用户留存危机：99%单次会话，零回访</h3>
+<table>
+<tr><th>指标</th><th>数据</th><th>含义</th></tr>
+<tr><td>单会话用户</td><td><b>989人 (99%)</b></td><td>几乎没有人回来进行第二次创作</td></tr>
+<tr><td>2-3个会话用户</td><td>7人 (0.7%)</td><td>极少数形成了使用习惯</td></tr>
+<tr><td>4+个会话用户</td><td><b>0人</b></td><td>没有忠诚用户</td></tr>
+</table>
+<div class="insight"><b>核心危机：</b>这是最大的产品问题。用户来了一次就不来了——不是体验不够好，而是没有建立"创作伴侣"的心智。用户把千问当作一次性工具，而非长期协作者。<br><br><b>破局方向：</b>① 会话结束时的"下次继续创作"入口  ② 创作成果的持久化保存（作品库）  ③ 跨会话的角色/设定记忆  ④ 创作进度提醒（"您上次写到第三章"）</div>
+
+<h3>二、首轮体验悖论：设定越详细，会话越短</h3>
+<table>
+<tr><th>首轮query长度</th><th>平均会话深度</th><th>中位轮次</th><th>样本数</th></tr>
+<tr><td><50字（简短启动）</td><td><b>10.5轮</b></td><td>2轮</td><td>492</td></tr>
+<tr><td><b>50-200字（中等设定）</b></td><td><b>15.6轮</b></td><td>6轮</td><td>236</td></tr>
+<tr><td>200-500字（详细设定）</td><td>13.3轮</td><td>4轮</td><td>96</td></tr>
+<tr><td>500+字（超长设定灌入）</td><td><b>9.0轮</b></td><td>3轮</td><td>127</td></tr>
+</table>
+<div class="insight"><b>反直觉发现：</b>首轮设定越详细（500+字），会话反而越短（仅9轮）。可能原因：① 一次性灌入太多设定导致AI理解偏差  ② 用户预期过高，实际输出不匹配后快速失望  ③ 中等长度（50-200字）的"核心设定+开放方向"模式最优。<br><br><b>产品启示：</b>首轮应引导用户分步设定（角色→世界观→情节方向），而非一次性灌入。可在输入框旁提示"先描述主角，后续可逐步补充"。</div>
+
+<h3>三、约束指令高频：41%会话含"防错墙"</h3>
+<table>
+<tr><th>约束类型</th><th>出现次数</th><th>典型场景</th></tr>
+<tr><td><b>禁止行为（"不能"）</b></td><td>388</td><td>"不能让主角太弱""不能跳过感情线"</td></tr>
+<tr><td>强制规则（"必须"）</td><td>150</td><td>"必须保持第一人称""每章必须有对话"</td></tr>
+<tr><td>要求记忆设定（"记住"）</td><td>55</td><td>"记住XX是男主的姐姐""记住主角害怕黑暗"</td></tr>
+<tr><td>风格约束</td><td>49</td><td>"风格要轻松幽默""文风偏古风"</td></tr>
+<tr><td>提醒不要遗忘</td><td>41</td><td>"别忘了之前设定的时间线"</td></tr>
+<tr><td>不要写某内容</td><td>32</td><td>"不要写得太文绉绉""不要出现现代词汇"</td></tr>
+</table>
+<p><b>总计：1,791条约束指令（占总对话15.9%），涉及413个会话（41%）</b></p>
+<div class="insight"><b>深层含义：</b>用户花大量精力在"防止AI犯错"上，说明过去的使用经验让他们预判AI会出错。这是一种<strong>防御性使用模式</strong>——用户不是在创作，而是在管束AI。<br><br><b>产品方向：</b>① 将约束指令自动提取为"创作规则卡"持久化  ② 在AI输出前自动检查是否违反规则  ③ 减少"记住"类指令的需求——系统应主动记住，而非被提醒</div>
+
+<h3>四、极简指令Taxonomy：8.5%的对话是1-5字</h3>
+<table>
+<tr><th>极简指令</th><th>出现次数</th><th>意图推断</th></tr>
+<tr><td>"好"</td><td>51</td><td>确认上一轮输出，要求继续</td></tr>
+<tr><td>"后续"</td><td>47</td><td>要求推进剧情</td></tr>
+<tr><td>"1"</td><td>41</td><td>选择第1个选项 或 确认</td></tr>
+<tr><td>"下一章"</td><td>39</td><td>明确要求章节推进</td></tr>
+<tr><td>"要"</td><td>33</td><td>确认/肯定</td></tr>
+<tr><td>"继续"</td><td>29</td><td>继续当前方向</td></tr>
+<tr><td>"3"/"2"</td><td>44</td><td>选择选项</td></tr>
+<tr><td>"续写"</td><td>10</td><td>直接续写</td></tr>
+</table>
+<div class="insight"><b>行为模式：</b>用户在创作深入后大量使用极简指令，进入"自动驾驶"模式。这些指令的意图高度依赖上下文——"好"可能是"满意，继续"也可能是"算了，就这样吧"。<br><br><b>产品方向：</b>① 极简指令时AI应主动确认方向（"好的，接下来写XX场景？"）  ② 提供"快速操作栏"（续写/换方向/修改/新章节）替代极简输入  ③ 识别"1/2/3"数字指令为选择行为</div>
+
+<h3>五、创作节奏画像：2分钟一轮的沉浸式体验</h3>
+<table>
+<tr><th>间隔时间</th><th>占比</th><th>行为解读</th></tr>
+<tr><td><b>1-5分钟</b></td><td><b>82%</b></td><td>快速连续创作，沉浸状态</td></tr>
+<tr><td>5-30分钟</td><td>14%</td><td>思考/修改/休息</td></tr>
+<tr><td>30分钟+</td><td>5%</td><td>中断后回来</td></tr>
+</table>
+<p>中位数：<b>2分钟/轮</b> ｜ 重生成轮间隔：<b>1分钟</b>（比正常轮快一倍）</p>
+<div class="insight"><b>节奏洞察：</b>① 82%的对话间隔在5分钟内，说明用户处于高度沉浸状态  ② 重生成时间隔缩短到1分钟——不满意时会更急迫地重试  ③ 2分钟/轮的节奏意味着用户在看AI输出后快速决策下一步<br><br><b>产品方向：</b>① 保持快速响应（<10秒生成）是核心体验  ② 重生成时提供"快速对比"功能（新旧版本并排）  ③ 长时间间隔（>5分钟）后回来时，AI应主动回顾上下文</div>
+
+<h3>六、回复长度与满意度的U型曲线</h3>
+<table>
+<tr><th>回复长度</th><th>样本数</th><th>重生成率</th><th>query均长</th><th>问题诊断</th></tr>
+<tr><td><b>&lt;100字</b></td><td>292</td><td><b>10.3%</b></td><td>132字</td><td>审核截断/空回复，用户被迫重试</td></tr>
+<tr><td>100-500字</td><td>1,173</td><td><b>4.9%（最低）</b></td><td>83字</td><td>短回复满足简单需求</td></tr>
+<tr><td>500-1000字</td><td>2,422</td><td>6.5%</td><td>101字</td><td>中等长度，基本满意</td></tr>
+<tr><td><b>1k-2k字</b></td><td><b>5,409（48%）</b></td><td>9.7%</td><td>153字</td><td>主力区间，但重生成率偏高</td></tr>
+<tr><td>2k-5k字</td><td>1,642</td><td><b>9.9%</b></td><td>295字</td><td>长输出+长指令=高预期，但未满足</td></tr>
+<tr><td>5k+</td><td>63</td><td>4.8%</td><td>1,069字</td><td>极少，用户很少下超长指令</td></tr>
+</table>
+<div class="insight"><b>U型曲线：</b>满意度呈U型——极短回复（审核截断）和长回复（预期未满足）都触发高重生成率。最安全的区间是100-500字（4.9%），但48%的回复集中在1k-2k字区间（9.7%重生成率）。<br><br><b>核心矛盾：</b>用户query越长（295字），期望回复越长（2k+字），但不满意率也最高（9.9%）。长指令+长回复≠高质量。<br><br><b>产品方向：</b>① 审核截断必须给反馈（P0）  ② 1k-2k字主力区间需提升质量  ③ 长指令时分段输出+中间确认</div>
+
+<h3>七、会话结束模式：21%在续写中戛然而止</h3>
+<table>
+<tr><th>结束类型</th><th>占比</th><th>行为解读</th></tr>
+<tr><td>其他（自然结束）</td><td>54%</td><td>无明确信号，可能中断或完成</td></tr>
+<tr><td><b>续写推进中结束</b></td><td><b>21%</b></td><td>最后一轮在要求"继续/下一章"——创作未完成</td></tr>
+<tr><td>指令设定</td><td>12%</td><td>最后在设定新方向</td></tr>
+<tr><td>修改重试后结束</td><td>9%</td><td>不满意后放弃</td></tr>
+<tr><td>评价感谢</td><td>4%</td><td>满意后结束</td></tr>
+</table>
+<div class="insight"><b>流失节点：</b>21%的会话在"续写推进"中戛然而止——用户还在创作，但因为某些原因（时间、不满意、上下文丢失）中断了。这些是<strong>最有可能挽回的用户</strong>。<br><br><b>产品方向：</b>① 会话结束时提示"保存创作进度"  ② 下次打开时"继续上次创作"  ③ 续写超过20轮时主动询问"是否保存为作品"</div>
+
+<h3>八、子类型使用模式：56%用户只用一种功能</h3>
+<table>
+<tr><th>使用种数</th><th>用户数</th><th>占比</th></tr>
+<tr><td><b>仅1种子类型</b></td><td>555</td><td><b>56%</b></td></tr>
+<tr><td>2种子类型</td><td>188</td><td>19%</td></tr>
+<tr><td>3+种子类型</td><td>251</td><td>25%</td></tr>
+</table>
+<p>平均使用子类型数：<b>1.9种/用户</b></p>
+<div class="insight"><b>功能发现不足：</b>超过一半用户只用一种功能（如只用"续写"或只用"其他小说"），没有探索其他子类型。说明功能入口不够明显，或用户不知道还有其他能力。<br><br><b>产品方向：</b>① 在创作过程中适时推荐相关功能（"试试角色设定？"）  ② 功能引导卡片  ③ 将子类型转化为"创作工具栏"而非隐藏的意图分类</div>
+
+<h3>九、query行为分类全景（11,295条全量）</h3>
+<table>
+<tr><th>指令类型</th><th>条数</th><th>占比</th><th>典型特征</th></tr>
+<tr><td>其他</td><td>4,620</td><td>40.9%</td><td>无法归类的混合指令</td></tr>
+<tr><td><b>对话指令</b></td><td>1,751</td><td>15.5%</td><td>含"说/道/对话/台词"</td></tr>
+<tr><td><b>约束指令</b></td><td>1,408</td><td>12.5%</td><td>含"不要/必须/记住/不能"</td></tr>
+<tr><td><b>续写指令</b></td><td>1,338</td><td>11.8%</td><td>含"续写/继续/下一章"</td></tr>
+<tr><td><b>极简指令</b></td><td>963</td><td>8.5%</td><td>1-5个字</td></tr>
+<tr><td>角色设定</td><td>457</td><td>4.0%</td><td>含"主角/男主/女主"</td></tr>
+<tr><td>修改指令</td><td>260</td><td>2.3%</td><td>含"改/重写/重新"</td></tr>
+<tr><td>情节规划</td><td>249</td><td>2.2%</td><td>含"情节/剧情/大纲"</td></tr>
+</table>
+<div class="insight"><b>全景洞察：</b>40.9%的指令是"其他"——说明用户指令太自由发散，AI难以准确理解意图。真正结构化指令（续写+约束+对话）合计占39.8%。极简指令（8.5%）+约束指令（12.5%）= 21%的对话是"低信息量"的，AI需要靠上下文猜意图。<br><br><b>产品方向：</b>① 识别40.9%的"其他"指令需要更强的上下文理解  ② 对话指令(15.5%)占比高→支持"对话模式"生成  ③ 约束指令(12.5%)→自动提取约束规则</div>
+
+<h2 style="margin-top:32px">Part B：定性深挖（杨姐100会话精读）</h2>
+
+<h3>十、首轮启动模式分类：21%用户首轮就建"防错墙"</h3>
+<p>杨姐100会话首轮query逐条精读结果：</p>
+<table>
+<tr><th>首轮模式</th><th>占比</th><th>典型示例</th></tr>
+<tr><td><b>直接续写指令</b></td><td>22%</td><td>"续写""接着写下一章"</td></tr>
+<tr><td><b>约束+设定混合</b></td><td><b>21%</b></td><td>"写长篇完结小说，设定:江颢(男主...)是京城顶级豪门..."</td></tr>
+<tr><td>角色+设定描述</td><td>19%</td><td>"我想写一篇魔幻小说。要求：1.每章不少于六千字..."</td></tr>
+<tr><td>极简启动</td><td>14%</td><td>"写一本天幕曝光感人类小说100万字"</td></tr>
+<tr><td>世界观/背景设定</td><td>3%</td><td>"开放的世界，林雨受，长得软萌..."</td></tr>
+<tr><td>情节指令</td><td>3%</td><td>"蓝色监狱中凪和玲王冷战那段"</td></tr>
+<tr><td>其他</td><td>18%</td><td>"在吗？我的小助手啊，唉..."</td></tr>
+</table>
+<div class="insight"><b>关键发现：</b>21%的用户在首轮就同时包含角色设定和约束指令（"不要""必须""记住"）。这些用户有过使用经验，预判AI会犯错，主动设置"防错墙"。但首轮过长（500+字）反而导致会话更短（仅9轮）——<strong>防错墙太厚反而阻碍创作</strong>。<br><br>与汉诺塔对比：汉诺塔首轮42%是"其他"，30%是极简<20字，仅10%含约束。说明杨姐的用户更成熟/更有经验，更倾向于在首轮就设定规则。</div>
+
+<h3>十一、用户情绪轨迹：负面情绪在中段爆发</h3>
+<table>
+<tr><th>情绪指标</th><th>杨姐数据</th><th>汉诺塔数据</th><th>交叉验证</th></tr>
+<tr><td>含负面情绪的会话</td><td><b>57%</b></td><td>41%</td><td>杨姐更深→负面更多</td></tr>
+<tr><td>含正面情绪的会话</td><td>67%</td><td>—</td><td>过半用户有正反馈</td></tr>
+<tr><td>负面/正面比</td><td>0.9:1</td><td>—</td><td>接近1:1</td></tr>
+<tr><td>负面情绪出现位置·前1/3</td><td>35%</td><td>—</td><td>前期还有耐心</td></tr>
+<tr><td><b>负面情绪出现位置·中1/3</b></td><td><b>41%</b></td><td>—</td><td><b>中段爆发</b></td></tr>
+<tr><td>负面情绪出现位置·后1/3</td><td>24%</td><td>—</td><td>后期放弃或和解</td></tr>
+</table>
+<div class="insight"><b>情绪中段爆发：</b>负面情绪在会话中段集中（41%），前期用户还有耐心，中期AI开始跑偏后情绪爆发，后期要么放弃要么和解。这和"约束指令"数据吻合——用户给了足够设定后，AI仍在中段跑偏。<br><br><b>深度会话负面更多：</b>杨姐（平均44.7轮）57%含负面 vs 汉诺塔（平均11轮）41%——会话越深，AI跑偏越多，用户越不满。<br><br><b>产品方向：</b>① 会话超过10轮时主动检查"是否偏离初始设定"  ② 中段提供"回到正轨"功能  ③ 识别用户情绪词后主动道歉+调整</div>
+
+<h3>十二、回复格式与长度的正相关：越长越格式化</h3>
+<table>
+<tr><th>回复长度</th><th>加粗率(杨姐)</th><th>加粗率(汉诺塔)</th><th>对话数/回复</th><th>场景描写率</th></tr>
+<tr><td>&lt;200字</td><td>3%</td><td>4.5%</td><td>1.0</td><td>30%</td></tr>
+<tr><td>200-800字</td><td>10%</td><td>30.3%</td><td>7.2</td><td>77%</td></tr>
+<tr><td>800-1500字</td><td>55%</td><td>59.4%</td><td>15.0</td><td>93%</td></tr>
+<tr><td><b>1500-2500字</b></td><td><b>72%</b></td><td><b>70.9%</b></td><td><b>28.8</b></td><td>96%</td></tr>
+<tr><td><b>2500+字</b></td><td><b>84%</b></td><td><b>72.3%</b></td><td><b>54.1</b></td><td>97%</td></tr>
+</table>
+<div class="insight"><b>双数据交叉验证：</b>回复越长，markdown格式越严重——两份数据趋势完全一致。短回复（<200字）几乎不加粗（3-4.5%），像真正的小说；长回复（2500+）84%含加粗，退化为格式化模板。<br><br><b>根因推断：</b>AI在短回复时可以保持"小说文风"，但一旦长回复就退化为"结构化输出"模式（加粗关键词、分小节标题）。这说明模型在长文本生成时缺乏"纯小说模式"的控制力。<br><br><b>产品方向：</b>① 长回复时强制纯文本输出模式  ② 1500字以上回复自动去markdown  ③ 分段输出减少单次生成长度</div>
+
+<h3>十三、重复query行为链路：71%死磕或换方向</h3>
+<table>
+<tr><th>重复后行为</th><th>占比</th><th>行为解读</th></tr>
+<tr><td><b>继续重复（死磕）</b></td><td><b>36%</b></td><td>不满意，反复重试同一指令</td></tr>
+<tr><td><b>换方向（妥协）</b></td><td><b>35%</b></td><td>放弃当前方向，尝试新方向</td></tr>
+<tr><td>继续正常（接受）</td><td>26%</td><td>勉强接受，继续推进</td></tr>
+<tr><td>结束（流失）</td><td>2%</td><td>直接放弃，退出会话</td></tr>
+</table>
+<p>含重复query的会话：<b>64%</b>（杨姐） vs 26%（汉诺塔）｜ 重复query平均长度：<b>28字</b>（34%是<10字极简指令）</p>
+<div class="insight"><b>死磕型用户：</b>36%的用户在重复同一query后继续重复——说明他们对AI输出不满意但不愿放弃。这些是最有可能流失的用户，也是<strong>最需要"重生成时换思路"功能</strong>的用户。<br><br><b>容忍度悖论：</b>仅2%在重复后直接结束——用户容忍度很高，但这不一定是好事。高容忍度意味着用户在"忍耐"而非"享受"创作过程。<br><br><b>产品方向：</b>① 同一query连续重复2次时，AI主动换角度生成  ② 重复3次时提示"换个描述试试？"  ③ 识别死磕模式后提供"灵感推荐"</div>
+
+<h3>十四、回复文学特征密度：描写好但内心独白差</h3>
+<table>
+<tr><th>文学特征</th><th>出现率</th><th>质量评价</th></tr>
+<tr><td>动作描写</td><td>95.1%</td><td>✅ 优秀——基本每条都含动作</td></tr>
+<tr><td>角色对话</td><td>96.1%</td><td>✅ 优秀——平均19.9个对话/回复</td></tr>
+<tr><td>场景描写</td><td>86.2%</td><td>✅ 良好——环境/光线/声音等</td></tr>
+<tr><td>感官描写</td><td>82.3%</td><td>✅ 良好——冷热/香苦/柔软等</td></tr>
+<tr><td><b>内心独白</b></td><td><b>27.2%</b></td><td><b>⚠️ 不足——仅1/4含心理描写</b></td></tr>
+</table>
+<div class="insight"><b>描写好但心理浅：</b>AI在"看得见"的描写（动作、对话、场景、感官）上做得不错（80%+），但在"看不见"的心理层面严重不足（27.2%）。<br><br>小说的深度取决于心理描写——读者要"感受到角色的内心"。AI当前更像在"写剧本"（动作+对话）而非"写小说"（心理+描写）。<br><br><b>产品方向：</b>① 在续写指令中增加"内心独白"权重  ② 提供"心理描写增强"选项  ③ 在角色设定中增加"内心世界"维度</div>
+
+<h3>十五、回复格式总览：双数据对比</h3>
+<table>
+<tr><th>格式问题</th><th>汉诺塔</th><th>杨姐</th><th>交叉验证</th><th>严重度</th></tr>
+<tr><td><b>markdown加粗</b></td><td><b>53.6%</b></td><td><b>48.1%</b></td><td>✅ 一致(50%+)</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>标题符号</td><td>25.5%</td><td>26.1%</td><td>✅ 一致</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>列表符号</td><td>21.9%</td><td>17.4%</td><td>✅ 趋势一致</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>角色对话</td><td>92.9%</td><td>96.1%</td><td>✅ 合理</td><td>—</td></tr>
+</table>
+<div class="insight"><b>系统性问题：</b>双数据交叉验证确认——markdown格式污染是系统性问题，约50%回复含加粗、25%含标题。在小说场景中完全多余，破坏阅读沉浸感。用户看到**加粗**会立刻意识到"这是AI生成的"。</div>
+
+<h2 style="margin-top:24px">Part C：双数据交叉验证总表</h2>
+<table>
+<tr><th>维度</th><th>汉诺塔(1000会话)</th><th>杨姐(100会话)</th><th>验证结论</th></tr>
+<tr><td>回复加粗率</td><td>53.6%</td><td>48.1%</td><td>✅ 一致，系统性问题</td></tr>
+<tr><td>长度vs加粗趋势</td><td>4.5%→72.3%</td><td>3%→84%</td><td>✅ 趋势一致，越长越格式化</td></tr>
+<tr><td>含负面情绪会话</td><td>41%</td><td>57%</td><td>⚠️ 有差异，深度会话负面更多</td></tr>
+<tr><td>含重复query会话</td><td>26%</td><td>64%</td><td>⚠️ 有差异，深度会话重复更多</td></tr>
+<tr><td>首轮含约束</td><td>10%</td><td>21%</td><td>⚠️ 有差异，杨姐用户更成熟</td></tr>
+<tr><td>平均会话深度</td><td>11轮</td><td>44.7轮</td><td>定位不同：体检 vs 手术</td></tr>
+</table>
+<div class="insight"><b>差异解读：</b>杨姐数据在负面情绪(57% vs 41%)、重复query(64% vs 26%)、首轮约束(21% vs 10%)上都显著高于汉诺塔——这<strong>不是矛盾，而是互补</strong>。杨姐的深度会话暴露了"长线创作中的问题"，而汉诺塔的大样本提供了"总体基线"。两份数据共同指向同一个核心问题：<strong>AI在长线创作中逐渐跑偏，用户在中段开始不满但不愿放弃</strong>。</div>
+
+<h2 style="margin-top:32px">Part D：产品行动框架</h2>
+
+<h3>体验优化：从"能用"到"好用"</h3>
+<table>
+<tr><th>优化项</th><th>当前现状</th><th>目标状态</th><th>优先级</th></tr>
+<tr><td>审核截断无反馈</td><td>10.3%重生成率（&lt;100字回复）</td><td>截断时给出原因+改写建议</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>回复格式去markdown</td><td>50%+含加粗、25%含标题</td><td>小说场景纯文本输出</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>长回复退化为模板</td><td>2500+字84%加粗，短回复仅3%</td><td>长回复也保持纯小说文风</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>长指令分段输出</td><td>2k+字回复重生成率9.9%</td><td>分段输出+中间确认</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>心理描写不足</td><td>仅27.2%含内心独白</td><td>续写中增加心理描写权重</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>约束指令持久化</td><td>41%会话含"防错墙"</td><td>自动提取为创作规则卡</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>重复query智能换角度</td><td>36%死磕型重复</td><td>重复2次后自动换思路</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>极简指令智能理解</td><td>8.5%对话是1-5字</td><td>识别意图+快速操作栏</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>中段跑偏检测</td><td>41%负面情绪在中段爆发</td><td>>10轮后主动检查偏离</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>首轮分步引导</td><td>500+字首轮→仅9轮</td><td>引导分步设定</td><td><span class="priority-tag p1">P1</span></td></tr>
+</table>
+
+<h3>心智建立：从"工具"到"伴侣"</h3>
+<table>
+<tr><th>心智建设项</th><th>当前现状</th><th>目标状态</th><th>优先级</th></tr>
+<tr><td>创作成果保存</td><td>无保存功能</td><td>自动保存为"作品"，可继续编辑</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>跨会话记忆</td><td>99%单次会话</td><td>角色/设定/进度跨会话保持</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td>续接上次创作</td><td>21%续写中中断</td><td>打开时提示"继续上次创作"</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>创作进度可视化</td><td>无进度概念</td><td>章节列表+进度条</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td>功能发现引导</td><td>56%只用1种功能</td><td>适时推荐相关创作能力</td><td><span class="priority-tag p2">P2</span></td></tr>
+<tr><td>创作社区/分享</td><td>无社交功能</td><td>作品分享+创作交流</td><td><span class="priority-tag p2">P2</span></td></tr>
+</table>
+
+<div class="insight" style="margin-top:20px"><b>总结：</b>对15,768条数据全量精读后，核心问题清晰浮现——<strong>不是AI写得不好，而是AI在长线创作中逐渐失控</strong>。短回复像小说（加粗仅3%），长回复退化为模板（加粗84%）；前期用户有耐心，中期情绪爆发（41%负面在中段）；用户用约束指令建"防错墙"（41%会话），但仍防不住中段跑偏；36%的用户在重复query后死磕，但仅有2%直接退出——用户容忍度很高，但"忍耐"不等于"享受"。<br><br>产品需要从三个层面突破：<br><b>1. 格式控制</b>——长回复也要保持纯小说文风（P0）<br><b>2. 上下文治理</b>——中段防跑偏+约束持久化+重复换思路（P1）<br><b>3. 心智建立</b>——作品保存+跨会话记忆+进度续接（P0-P1）<br><br>只有让用户感受到"千问记得我的故事"，才能从一次性工具变成长期创作伴侣。</div>
+
+<h2 style="margin-top:32px">Part E：交互方案级产品建议（结合具体Case）</h2>
+
+<h3>Case 1：长回复格式化退化 → "小说模式"强制纯文本输出</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>用户query（266字）请求写一段校园小说。AI回复2054字，含<b>19处加粗</b>和<b>4个标题</b>，输出格式为：<br>
+<code>### 一、为什么他"一定看了"且"秒懂"？</code><br>
+<code>**结论先行：** 他一定会看，而且会看得非常仔细。</code><br>
+<code>**触发机制：** ...</code><br>
+这根本不是小说，而是一份<b>分析报告</b>。<br>
+<b>同类问题：</b>2500+字回复84%含加粗，1500-2500字72%含加粗——越长越像报告越不像小说。</div>
+<div class="insight">
+<b>交互方案：小说创作模式开关</b><br>
+① 用户首次进入小说意图时，自动开启"小说模式"（纯文本，无markdown）<br>
+② 输入框上方显示状态：<code>📝 小说模式已开启 · 纯文本输出</code><br>
+③ 后端处理：回复生成后自动过滤 <code>**</code>、<code>##</code>、<code>- </code> 等markdown符号<br>
+④ 当检测到回复中markdown密度过高时（>5处加粗），自动重写为纯文本再返回<br>
+⑤ 用户可手动关闭（但默认开启），关闭时提示"关闭后AI输出可能包含格式标记"
+</div>
+
+<h3>Case 2：死磕型重复query → "换思路"智能干预</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>会话a0d3368ee329（146轮），用户连续<b>40次重复</b>同一query"详细总结文档内容"。AI每次返回相似的总结，用户不停重试。重复后第145轮，用户终于放弃，改为新指令。<br>
+<b>同类问题：</b>64%的杨姐会话含重复query，36%是"死磕型"（继续重复同一指令）。</div>
+<div class="insight">
+<b>交互方案：重复检测+换思路推荐</b><br>
+① 检测到用户<b>连续2次</b>发送相同query时，在回复下方插入提示条：<br>
+<code>💡 检测到您多次尝试相同指令，试试换个角度？</code><br>
+② 提供3个"换思路"选项卡片：<br>
+　 a) <b>📋 提取要点</b> — "帮我把上文关键设定提取成清单"<br>
+　 b) <b>🔄 换个方向</b> — "从另一个角色视角重写这段"<br>
+　 c) <b>✏️ 局部修改</b> — "指定需要修改的具体段落"<br>
+③ 连续重复<b>3次以上</b>时，AI主动换角度生成，并在回复前标注：<br>
+<code>🔄 本次尝试从不同角度生成，如不满意可继续调整</code><br>
+④ 死磕检测逻辑：<code>if (currentQuery == lastQuery && repeatCount >= 2) showIntervention()</code>
+</div>
+
+<h3>Case 3：中段情绪爆发 → "回到正轨"上下文检查</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>会话001f53303c38（32轮），用户首轮写了详细魔幻小说设定（含"每章不少于六千字"）。第3-5轮连续3次重复同一续写指令（含"别"），第9-11轮又连续3次重复。16次负面情绪中<b>9次在会话中段</b>。<br>
+<b>同类问题：</b>41%的负面情绪在会话中1/3爆发——AI在中段开始跑偏。</div>
+<div class="insight">
+<b>交互方案：中段上下文锚定+偏离提醒</b><br>
+① 会话超过<b>10轮</b>时，自动提取"初始设定锚点"（角色名、世界观、文风要求）<br>
+② 在输入框上方常驻显示：<code>📌 创作锚点：魔幻小说 · 安明 · 每章6000字 · 第一人称</code><br>
+③ 每生成5轮后，后台静默检查当前输出是否偏离锚点：<br>
+　 - 如果角色名变了 → 回复前插入：<code>⚠️ 注意：上一段中角色名从"安明"变为了"安铭"，是否需要修正？</code><br>
+　 - 如果字数不达标 → 回复后追加：<code>📊 本章已生成3200字，未达到6000字目标，是否继续扩写？</code><br>
+④ 用户可点击"创作锚点"随时查看/修改当前规则
+</div>
+
+<h3>Case 4：首轮超长设定→快速放弃 → "分步设定"引导流程</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>会话483fa03d424（首轮1780字），用户一口气粘贴了角色外貌、性格总结、能力设定等全部内容。AI回复2657字分析报告。随后用户连续4轮都在问"会像是JK罗琳写的角色吗"——<b>完全偏离了创作</b>，仅5轮后放弃。<br>
+<b>对比：</b>首轮50-200字的用户平均15.6轮；首轮500+字的用户平均仅9.0轮。</div>
+<div class="insight">
+<b>交互方案：分步设定向导</b><br>
+① 检测到首轮query > 500字时，触发分步引导：<br>
+<code>💡 您的设定很丰富！建议分步设定，AI能更好理解：</code><br>
+② 展示"创作设定卡"分步表单：<br>
+　 Step 1: <b>角色</b> — 姓名 / 外貌 / 性格（文本框）<br>
+　 Step 2: <b>世界观</b> — 时代 / 地点 / 特殊设定（文本框）<br>
+　 Step 3: <b>文风</b> — 第一人称/第三人称 · 轻松/严肃（选择）<br>
+　 Step 4: <b>情节方向</b> — 起始场景描述（文本框）<br>
+③ 用户可选择"跳过，直接发送"，但系统会将超长设定自动拆解为结构化卡片<br>
+④ 设定卡在会话过程中常驻侧边栏，用户可随时补充修改
+</div>
+
+<h3>Case 5：极简指令上下文依赖 → "快速操作栏"替代打字</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>会话127d0ab5d32（147轮），用户第39-44轮连续<b>6次发送"要"</b>，AI每次生成2000字下一章。用户完全进入"自动驾驶"模式——一个字驱动2000字创作。<br>
+<b>同类问题：</b>8.5%的对话是1-5字极简指令，"好"51次、"后续"47次、"1"41次。</div>
+<div class="insight">
+<b>交互方案：创作快速操作栏</b><br>
+① 在AI回复下方，根据当前上下文动态生成操作按钮：<br>
+　 <code>📖 继续下一章</code> <code>🔄 换个方向</code> <code>✏️ 修改这段</code> <code>👤 切换视角</code><br>
+② 点击"继续下一章"时，自动发送结构化指令：<br>
+<code>请续写下一章，保持前文风格和角色设定</code><br>
+③ 识别极简指令并转化为结构化：<br>
+　 - "要" / "好" / "1" → 等同于点击"继续下一章"<br>
+　 - "后续" → 等同于"继续推进剧情"<br>
+　 - "2" / "3" → 如果上轮AI提供了选项，则选择对应选项<br>
+④ 连续3次极简指令后，折叠输入框，全屏展示快速操作栏：<br>
+<code>您正在快速创作模式 · 点击按钮即可推进 · [退出模式]</code>
+</div>
+
+<h3>Case 6：审核截断无反馈 → 截断原因+改写建议</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>汉诺塔数据中<b>527条回复（4.7%）是空回复（"nan"）</b>。典型case：用户发送"给杨志刚取道号"→回复为空；用户发送"继续演兰陵王"→回复为空。用户被迫重试，重生成率10.3%。<br>
+<b>问题：</b>用户完全不知道为什么没回复，只能反复重试。</div>
+<div class="insight">
+<b>交互方案：截断反馈机制</b><br>
+① 当回复被审核截断/为空时，不返回空白，而是返回结构化反馈：<br>
+<code>⚠️ 本次生成未完成</code><br>
+<code>原因：内容可能包含敏感元素</code><br>
+<code>建议：① 尝试调整描述角度 ② 跳过这段直接写下一章 ③ 换个情节方向</code><br>
+② 提供一键操作：<code>跳过本章</code> <code>换个方向</code> <code>调整后重试</code><br>
+③ 连续2次截断时，AI主动建议替代方案：<br>
+<code>💡 这段似乎不太好写，要不我们跳到下一个场景？</code><br>
+④ 后台记录截断原因，用于模型优化
+</div>
+
+<h3>Case 7：约束指令"防错墙" → 自动提取"创作规则卡"</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>汉诺塔41%的会话含约束指令。典型约束："不能让主角太弱""必须保持第一人称""记住XX是男主的姐姐""不要出现现代词汇"。用户花了15.9%的对话在"防错"上。<br>
+<b>杨姐数据：</b>会话2b493ff（865轮）中用户69次使用约束词（"不要""别""必须"）。</div>
+<div class="insight">
+<b>交互方案：创作规则卡自动提取</b><br>
+① NLP识别query中的约束指令，自动提取为规则卡：<br>
+<code>📋 创作规则卡（已自动提取3条规则）</code><br>
+<code>✅ 必须保持第一人称</code><br>
+<code>✅ 不能让主角太弱</code><br>
+<code>✅ 记住：林雪是男主的姐姐</code><br>
+② 规则卡常驻侧边栏，AI在生成前自动检查：<br>
+　 - 检测到违反规则时，生成前自动修正<br>
+　 - 无法确定时，在回复中标注：<code>⚠️ 注意：此处主角表现得有些软弱，是否符合您的设定？</code><br>
+③ 用户可手动添加/删除规则<br>
+④ 规则卡跨会话保存（与Case 8的"作品保存"联动）
+</div>
+
+<h3>Case 8：续写中戛然而止 → "创作进度"保存与续接</h3>
+<div style="background:#f8f9fa;padding:12px;border-radius:6px;margin:8px 0;font-size:13px">
+<b>真实数据：</b>21%的会话在"续写推进"中戛然而止——最后一轮在要求"继续/下一章"，但用户再也没有回来。99%的用户是单次会话，没有形成回访。<br>
+<b>典型场景：</b>用户写到第20章，说了"下一章"，然后关闭了页面。</div>
+<div class="insight">
+<b>交互方案：创作进度自动保存与续接</b><br>
+① 每次AI回复后自动保存"创作快照"（文本+上下文摘要）<br>
+② 会话超过10轮时，在页面顶部显示进度条：<br>
+<code>📚 您的小说已写到第20章 · 35,000字 · [保存为作品]</code><br>
+③ 用户离开时（关闭页面/超时），弹窗提示：<br>
+<code>💾 您的创作进度已自动保存</code><br>
+<code>下次回来可以继续写第21章</code><br>
+④ 下次打开小说创作时，首屏展示：<br>
+<code>📖 上次创作：《火影同人·青风传》第20章</code><br>
+<code>最后一章写到：青风在医院醒来，小樱在身旁...</code><br>
+<code>[继续创作] [从头开始] [查看全部章节]</code><br>
+⑤ 点击"继续创作"时，自动加载上下文摘要+角色设定+创作规则卡
+</div>
+
+<h3>交互方案优先级排序</h3>
+<table>
+<tr><th>方案</th><th>对应Case</th><th>解决问题</th><th>开发成本</th><th>优先级</th></tr>
+<tr><td><b>小说模式纯文本输出</b></td><td>Case 1</td><td>50%+回复含markdown</td><td>低（后端过滤）</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td><b>截断反馈机制</b></td><td>Case 6</td><td>4.7%空回复无反馈</td><td>低（前端展示）</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td><b>创作进度保存与续接</b></td><td>Case 8</td><td>99%单次会话+21%中断</td><td>中（需存储）</td><td><span class="priority-tag p0">P0</span></td></tr>
+<tr><td><b>创作规则卡自动提取</b></td><td>Case 7</td><td>41%会话含约束指令</td><td>中（NLP提取）</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td><b>中段上下文锚定</b></td><td>Case 3</td><td>41%负面在中段爆发</td><td>中（上下文比对）</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td><b>重复换思路推荐</b></td><td>Case 2</td><td>36%死磕型重复</td><td>低（前端检测）</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td><b>快速操作栏</b></td><td>Case 5</td><td>8.5%极简指令</td><td>低（前端按钮）</td><td><span class="priority-tag p1">P1</span></td></tr>
+<tr><td><b>分步设定向导</b></td><td>Case 4</td><td>500+字首轮→仅9轮</td><td>高（表单+拆解）</td><td><span class="priority-tag p2">P2</span></td></tr>
+</table>
+
+<div class="insight" style="margin-top:16px;background:#e8f5e9;border-color:#c8e6c9"><b>实施建议：</b>P0三项（小说模式、截断反馈、进度保存）开发成本低但感知最强，建议先做。P1四项（规则卡、锚定、换思路、操作栏）需要一定NLP/上下文能力，建议第二期。P2分步向导需要较重的前端改造，可结合用户反馈再定。<br><br>核心原则：<b>让用户感受到千问在"创作"而非"生成"</b>——纯文本小说格式是基础体验，进度保存是留存关键，规则卡和锚定是质量保障。</div>
+
+<h2 style="margin-top:32px">Part F：多维交叉分析（汉诺塔 49字段深挖）</h2>
+<p style="color:#666">基于汉诺塔CSV全量49字段，覆盖App版本、地域、Chat入口、Query类型、模型、反馈等维度，交叉重生成率等核心指标。</p>
+
+<h3>F-1. App版本分布与行为差异</h3>
+<div class="insight" style="background:#fff3e0;border-color:#ffcc80"><b>发现：</b>11,295条对话覆盖40+版本。6.12.5（语音71.7%、重生成仅1.7%）和6.11.7（语音68.5%、重生成1.0%）是「语音重度用户」特征版本；6.12.5.2922是「对话深度用户」（均轮77轮）；江苏用户在6.12.4版本重生成率25.1%异常高，需关注该版本质量。</div>
+<table>
+<tr><th>App版本</th><th>用户数</th><th>会话数</th><th>平均轮次</th><th>重生成率</th><th>语音率</th><th>打断率</th></tr>
+<tr><td>6.13.1.2928</td><td>368</td><td>372</td><td>40</td><td>7.7%</td><td>18.7%</td><td>2.5%</td></tr>
+<tr><td>6.12.5.2922</td><td>184</td><td>182</td><td>77</td><td>9.2%</td><td>29.8%</td><td>1.5%</td></tr>
+<tr><td>6.12.4.2921</td><td>95</td><td>96</td><td>44</td><td style="color:#c62828"><b>11.8%</b></td><td>15.6%</td><td>2.7%</td></tr>
+<tr><td>6.12.1.2918</td><td>47</td><td>47</td><td>54</td><td>9.3%</td><td>25.3%</td><td>0.7%</td></tr>
+<tr><td>6.12.5</td><td>18</td><td>18</td><td style="color:#c62828"><b>127</b></td><td style="color:#2e7d32"><b>1.7%</b></td><td style="color:#c62828"><b>71.7%</b></td><td>1.5%</td></tr>
+<tr><td>6.13.2.2929</td><td>20</td><td>20</td><td>42</td><td>7.7%</td><td>18.3%</td><td>1.7%</td></tr>
+<tr><td>6.11.7.2914</td><td>21</td><td>21</td><td>57</td><td style="color:#2e7d32"><b>1.0%</b></td><td style="color:#c62828"><b>68.5%</b></td><td style="color:#c62828"><b>7.7%</b></td></tr>
+<tr><td>6.11.6.2913</td><td>17</td><td>17</td><td>47</td><td style="color:#c62828"><b>11.9%</b></td><td>8.8%</td><td>0.8%</td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：6.12.5版本用户语音率71.7%+会话均轮127+重生成仅1.7%——语音重度用户满意度高，说明语音创作场景下小说生成质量优于文字。6.11.7打断率7.7%远高于均值（2.1%），可能是该版本存在卡顿/超时问题。</p>
+
+<h3>F-2. 地域分布与行为差异</h3>
+<div class="insight" style="background:#e3f2fd;border-color:#90caf9"><b>发现：</b>用户覆盖26省/直辖市。河北（906条/66用户）、山东（880条/63用户）为TOP2，小说用户集中在华北+华东+华南。江西重生成率30.8%（远超均值8.3%）、江苏25.1%、湖南20.3%是「高不满地区」。云南/重庆/福建语音率56.8%/53.5%/37.6%，是「语音创作偏好区」。</div>
+<table>
+<tr><th>省份</th><th>对话数</th><th>用户数</th><th>重生成率</th><th>语音率</th><th>打断率</th><th>特征标签</th></tr>
+<tr><td>河北</td><td>906</td><td>66</td><td>4.9%</td><td>24.5%</td><td>2.0%</td><td>量大、稳定</td></tr>
+<tr><td>山东</td><td>880</td><td>63</td><td>7.0%</td><td style="color:#c62828"><b>46.2%</b></td><td>0.8%</td><td>语音偏好</td></tr>
+<tr><td>江苏</td><td>753</td><td>45</td><td style="color:#c62828"><b>25.1%</b></td><td>10.0%</td><td>1.6%</td><td>高不满</td></tr>
+<tr><td>广东</td><td>603</td><td>66</td><td>6.0%</td><td>16.7%</td><td>1.5%</td><td>量大、稳定</td></tr>
+<tr><td>四川</td><td>521</td><td>43</td><td>4.4%</td><td>7.9%</td><td>1.3%</td><td>低不满</td></tr>
+<tr><td>河南</td><td>515</td><td>50</td><td style="color:#c62828"><b>14.6%</b></td><td>23.5%</td><td>2.1%</td><td>中高不满</td></tr>
+<tr><td>福建</td><td>502</td><td>30</td><td>6.8%</td><td style="color:#c62828"><b>37.6%</b></td><td>1.2%</td><td>语音偏好</td></tr>
+<tr><td>浙江</td><td>498</td><td>50</td><td style="color:#c62828"><b>11.4%</b></td><td>16.9%</td><td>0.8%</td><td>中不满</td></tr>
+<tr><td>广西</td><td>387</td><td>33</td><td>10.1%</td><td style="color:#c62828"><b>28.7%</b></td><td style="color:#c62828"><b>2.6%</b></td><td>语音+高打断</td></tr>
+<tr><td>江西</td><td>328</td><td>20</td><td style="color:#c62828"><b>30.8%</b></td><td>5.8%</td><td>0.0%</td><td>极高不满</td></tr>
+<tr><td>湖南</td><td>286</td><td>29</td><td style="color:#c62828"><b>20.3%</b></td><td>12.2%</td><td>1.4%</td><td>高不满</td></tr>
+<tr><td>辽宁</td><td>268</td><td>31</td><td>4.5%</td><td>14.9%</td><td>2.2%</td><td>稳定</td></tr>
+<tr><td>云南</td><td>250</td><td>16</td><td style="color:#2e7d32"><b>0.4%</b></td><td style="color:#c62828"><b>56.8%</b></td><td>3.2%</td><td>纯语音、极满意</td></tr>
+<tr><td>重庆</td><td>245</td><td>10</td><td style="color:#2e7d32"><b>0.4%</b></td><td style="color:#c62828"><b>53.5%</b></td><td>0.0%</td><td>纯语音、极满意</td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：云南/重庆用户语音率>53%但重生成率仅0.4%——语音创作体验明显好于打字。江苏/江西/湖南重生成率>20%需重点排查：是否与网络环境（延迟）或内容质量有关？</p>
+
+<h3>F-3. Chat入口差异</h3>
+<div class="insight" style="background:#f3e5f5;border-color:#ce93d8"><b>发现：</b>93.6%来自default_memory（对话历史入口），6.2%来自home（首页入口）。home入口语音率44.4%（vs default_memory 24.2%），但重生成率仅1.7%（vs 8.7%）——首页入口用户满意度更高，语音偏好更强。</div>
+<table>
+<tr><th>入口</th><th>对话数</th><th>用户数</th><th>重生成率</th><th>语音率</th><th>特征</th></tr>
+<tr><td>default_memory</td><td>10,567</td><td>902</td><td>8.7%</td><td>24.2%</td><td>主路径，重生成率接近均值</td></tr>
+<tr><td>home</td><td>702</td><td>86</td><td style="color:#2e7d32"><b>1.7%</b></td><td style="color:#c62828"><b>44.4%</b></td><td>语音偏好，满意度高</td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：home入口用户重生成率仅1.7%。可能是从首页进入的用户意图更明确、对话更短（均轮较低），而history入口用户是深度老用户、创作更复杂、期望更高。</p>
+
+<h3>F-4. Query类型分布</h3>
+<div class="insight" style="background:#e8f5e9;border-color:#a5d6a7"><b>发现：</b>文本输入43.7%、语音输入23.8%、技能调用20.0%、重新生成9.0%。send_voice_auto（1.6%）+ send_midcamera_confirm/voice（0.4%）属于特殊入口。send_retry仅14条（0.1%），说明用户很少使用「重试」按钮，而是手动重复提问。</div>
+<table>
+<tr><th>Query类型</th><th>数量</th><th>占比</th><th>解读</th></tr>
+<tr><td>send_input</td><td>4,941</td><td>43.7%</td><td>正常文本输入</td></tr>
+<tr><td>send_voice</td><td>2,690</td><td>23.8%</td><td>语音输入（小说场景高占比）</td></tr>
+<tr><td>send_skill</td><td>2,259</td><td>20.0%</td><td>技能/指令调用</td></tr>
+<tr><td>send_regenerate</td><td>1,018</td><td>9.0%</td><td>重新生成按钮</td></tr>
+<tr><td>send_voice_auto</td><td>176</td><td>1.6%</td><td>自动语音</td></tr>
+<tr><td>deep_link</td><td>82</td><td>0.7%</td><td>深度链接跳转</td></tr>
+<tr><td>send_retry</td><td>14</td><td>0.1%</td><td>重试按钮（极少使用）</td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：send_regenerate占9.0%与重生成率8.3%基本吻合。send_retry仅14条说明用户几乎不使用重试按钮——要么放弃，要么换个方式问。这是产品机会：在用户不满意时提供「换个风格」「缩短篇幅」等快捷选项。</p>
+
+<h3>F-5. 深度思考与RAG使用</h3>
+<div class="insight" style="background:#fce4ec;border-color:#f48fb1"><b>发现：</b>仅1.0%对话开启深度思考（117条/38用户），重生成率8.5%与未开启的8.3%无差异——说明深度思考对小说创作质量无明显提升。RAG使用率4.1%（460条），开启RAG后重生成率降至5.0%（vs 8.4%）——<b>RAG对小说创作有正向作用</b>。</div>
+<table>
+<tr><th>维度</th><th>开启</th><th>未开启</th><th>差异</th></tr>
+<tr><td>深度思考</td><td>117条(1.0%), 重生成8.5%</td><td>11,178条(99.0%), 重生成8.3%</td><td>无差异</td></tr>
+<tr><td>RAG检索</td><td>460条(4.1%), 重生成<b>5.0%</b></td><td>10,835条(95.9%), 重生成8.4%</td><td style="color:#2e7d32"><b>↓3.4pp</b></td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：深度思考功能在小说场景几乎无人使用（1.0%），且对质量无提升——小说创作不需要逻辑推理能力，而是创意和文笔。RAG对重生成率降低3.4pp，说明参考资料/上下文注入对小说质量有帮助，建议在创作流程中融入更多背景信息。</p>
+
+<h3>F-6. 反馈信号（点赞/点踩/举报）</h3>
+<div class="insight" style="background:#fff3e0;border-color:#ffcc80"><b>发现：</b>反馈信号极度稀疏！11,295条对话中仅点赞7次（0.06%）、点踩2次（0.02%）、举报12次（0.11%）。2个用户贡献全部点赞，2个用户贡献全部点踩。反馈与重生成无相关性（点赞且重生成=0条）。用户不满意时不会点踩，而是直接重新生成或放弃。</div>
+<p style="font-size:11px;color:#999">洞察：传统反馈机制（点赞/点踩）在小说场景完全失效。建议引入更适合创作场景的反馈：「这段写得好/不好」「换个写法」「太长/太短」等轻量级操作。当前935条重生成无任何反馈记录，是最大的数据黑洞。</p>
+
+<h3>F-7. 调用模型与中枢意图</h3>
+<div class="insight" style="background:#e3f2fd;border-color:#90caf9"><b>发现：</b>中枢融合意图92.8%为「内容创作-文本创作」，6.5%为「@vl」视觉语言版，0.2%为闲聊/知识问答。调用模型以quark-llama3+quarkchat-2p-intent为主，19.3%的对话叠加了qcot-0329-fallback-mix（思考链回退）。</div>
+<table>
+<tr><th>中枢融合意图</th><th>数量</th><th>占比</th></tr>
+<tr><td>内容创作-文本创作</td><td>10,487</td><td>92.8%</td></tr>
+<tr><td>内容创作-文本创作@vl</td><td>736</td><td>6.5%</td></tr>
+<tr><td>闲聊-日常对话@vl</td><td>24</td><td>0.2%</td></tr>
+<tr><td>知识问答-通用问答@vl</td><td>20</td><td>0.2%</td></tr>
+<tr><td>内容创作-文本创作@doc</td><td>10</td><td>0.1%</td></tr>
+</table>
+<p style="font-size:11px;color:#999">洞察：@vl（视觉语言）占6.5%+@doc占0.1%——说明部分用户会上传图片/文档辅助创作（如上传人设图、大纲文档），这是多模态创作场景的早期信号，值得持续关注。</p>
+
+<h3>F-8. 其他维度</h3>
+<table>
+<tr><th>维度</th><th>数据</th><th>洞察</th></tr>
+<tr><td>是否胶囊</td><td>非胶囊11,283 / 胶囊12（0.1%）</td><td>小说用户几乎不走胶囊入口</td></tr>
+<tr><td>话题id覆盖</td><td>99.9%有话题id（998/1002会话）</td><td>话题系统覆盖完善</td></tr>
+<tr><td>二方业务标识</td><td>大出行57条、在线服务14条</td><td>极少数小说对话被标记为二方场景</td></tr>
+<tr><td>子业务场景</td><td>仅45条有值（basic_explanation）</td><td>子场景覆盖极少</td></tr>
+<tr><td>TOP城市</td><td>泉州274、徐州271、临沂266、重庆245</td><td>二三线城市为主，非一线</td></tr>
+</table>
+
+<div class="insight" style="margin-top:16px;background:#e8f5e9;border-color:#c8e6c9"><b>Part F 综合洞察：</b><br>
+1. <b>语音是小说创作的最佳入口</b>：语音率>50%的省份（云南/重庆/山东）重生成率均<7%，home入口语音率44.4%+重生成仅1.7%——语音创作体验远优于打字<br>
+2. <b>RAG是有效的质量杠杆</b>：开启RAG后重生成率从8.4%降至5.0%（↓40%），应在创作流程中主动融入背景资料<br>
+3. <b>深度思考在小说场景无效</b>：1.0%使用率+无质量差异，不建议在小说场景推广<br>
+4. <b>反馈机制需重建</b>：传统点赞/点踩形同虚设（0.08%使用率），935条重生成0反馈是最大数据黑洞<br>
+5. <b>地域差异显著</b>：江西/江苏/湖南重生成率>20%，云南/重庆<1%，需排查是内容偏好还是网络体验差异<br>
+6. <b>多模态创作萌芽</b>：6.5%对话走@vl，用户开始用图片辅助小说创作</div>
 </div>`}
 
 function reportSummary(){return `<div class="report">
